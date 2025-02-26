@@ -389,7 +389,7 @@ export default function Page() {
                     { label: "Flexible", desc: "Works offline" }
                   ].map((item, i) => (
                     <div key={i} className="text-left">
-                    <div className="font-medium mb-1 text-violet-600 dark:text-violet-400">{item.label}</div>
+                    <div className="font-medium mb-1 text-violet-800 dark:text-violet-400">{item.label}</div>
                     <div className="text-sm text-violet-950 dark:text-violet-200">{item.desc}</div>
                     </div>
                   ))}
