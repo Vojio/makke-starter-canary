@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { WorkflowCarousel } from "@/components/workflow-carousel"
 import { useEffect, useState, memo } from "react"
 
 // Import Lucide React Icons
@@ -287,6 +288,35 @@ export default function Page() {
               </div>
             </div>
 
+            {/* Video Demo Section */}
+            <Section
+              id="demo-video"
+              className="mb-24 scroll-m-20"
+              badgeText="See It In Action"
+              badgeVariant="blue"
+              title="Product Demo"
+              subtitle="Watch how Repo Prompt transforms your coding workflow with AI"
+            >
+              <div className="mx-auto max-w-3xl">
+                <div className="aspect-video relative overflow-hidden rounded-xl shadow-lg border border-border/50 hover:shadow-xl transition-all duration-300">
+                  <iframe 
+                    className="w-full h-full absolute inset-0"
+                    src="https://www.youtube.com/embed/hNOAEYek1q4"
+                    title="Repo Prompt Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="mt-6 flex justify-center">
+                  <Button variant="default" size="lg" className="rounded-full hover:shadow-md" asChild>
+                    <Link href="https://testflight.apple.com/join/nBWkUJD6">
+                      Try It Now
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </Section>
+            
             {/* Integration Section */}
             <Section
               id="integrations"
@@ -333,6 +363,15 @@ export default function Page() {
                   Your Workflow
                 </h2>
               </div>
+              
+              {/* Import the WorkflowCarousel component at the top of the file */}
+              {mounted && (
+                <div className="bg-card/30 py-10 px-6 -mx-4 rounded-lg mb-8">
+                  <div className="max-w-3xl mx-auto">
+                    <WorkflowCarousel />
+                  </div>
+                </div>
+              )}
               
               <div className="bg-card/50 py-10 px-6 -mx-4 rounded-lg">
                 <div className="grid gap-6 sm:grid-cols-3 max-w-3xl mx-auto">
