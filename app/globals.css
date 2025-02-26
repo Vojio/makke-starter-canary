@@ -15,6 +15,12 @@
   }
 }
 
+@layer base {
+  html, body {
+    cursor: default;
+  }
+}
+
 :root {
   --background: color(display-p3 0.989 0.938 0.85);
   --foreground: color(display-p3 0.236 0.202 0.183);
