@@ -44,7 +44,7 @@ export default function Page() {
             <Link href="/" className="flex items-center gap-2 group p-2 rounded-md hover:bg-card/50 transition-all duration-300">
               <div className="relative overflow-hidden">
                 <Image
-                  src="/RepoPromptLogo_NoBG.png"
+                  src="/RepoPromptLogo.png"
                   alt="Repo Prompt"
                   width={32}
                   height={32}
