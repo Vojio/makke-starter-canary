@@ -35,7 +35,7 @@
   --border: hsl(240 5.9% 90%);
   --input: hsl(240 5.9% 90%);
   --ring: oklch(0.705 0.213 47.604);
-  --highlight: color(display-p3 0.989 0.938 0.85);
+  --highlight: color(display-p3 1 0.874 0.687);
   --highlight-foreground: color(display-p3 0.9 0.45 0.2);
   --chart-1: hsl(12 76% 61%);
   --chart-2: hsl(173 58% 39%);

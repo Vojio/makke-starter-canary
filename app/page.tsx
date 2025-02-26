@@ -21,12 +21,20 @@ import {
   Cpu,
   HelpCircle,
   Edit3,
-  CheckSquare
+  CheckSquare,
+  Menu,
+  X
 } from "lucide-react"
 
 export default function Page() {
   const currentYear = new Date().getFullYear()
   const [mounted, setMounted] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
 
   // For hydration
   useEffect(() => {
@@ -38,28 +46,21 @@ export default function Page() {
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/10">
         <div className="max-w-[1200px] mx-auto px-4 w-full">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center">
-              <div className="flex items-center gap-2">
-                <Link href="#" className="flex items-center gap-2 group px-3 py-1.5 rounded-md hover:bg-card/60 transition-all duration-300">
-                  <div className="relative overflow-hidden">
-                  <Image
-                    src="/RepoPromptLogo_NoBG.png"
-                    alt="Repo Prompt"
-                    width={32}
-                    height={32}
-                    className="drop-shadow-xs filter grayscale group-hover:grayscale-0 transition-filter duration-300"
-                  />
-                  </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="font-bold text-base text-foreground">
-                    Repo Prompt
-                  </p>
-                  </div>
-                </Link>
+            {/* Logo - Always visible */}
+            <Link href="#" className="flex items-center gap-2 group px-3 py-1.5 rounded-md hover:bg-card/60 transition-all duration-300">
+              <div className="relative overflow-hidden">
+                <Image
+                  src="/RepoPromptLogo_NoBG.png"
+                  alt="Repo Prompt"
+                  width={32}
+                  height={32}
+                  className="drop-shadow-xs filter"
+                />
               </div>
-            </div>
+            </Link>
             
-            <div className="flex items-center gap-8 md:gap-12">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
               <Link
                 href="https://testflight.apple.com/join/nBWkUJD6"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -80,7 +81,48 @@ export default function Page() {
               </Link>
               <ThemeToggle />
             </div>
+            
+            {/* Mobile Menu Toggle */}
+            <div className="flex items-center md:hidden">
+              <ThemeToggle />
+              <button 
+                onClick={toggleMenu}
+                className="ml-4 p-2 rounded-md hover:bg-card/60 transition-all"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
+          
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4 px-2 border-t border-border/10 animate-in fade-in slide-in-from-top-5 duration-300">
+              <div className="flex flex-col space-y-4">
+                <Link
+                  href="https://testflight.apple.com/join/nBWkUJD6"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Mac Download
+                </Link>
+                <Link
+                  href="https://discord.com/invite/NtbFDAJPGM"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Join Discord
+                </Link>
+                <Link
+                  href="https://ko-fi.com/repoprompt"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Donate
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -340,17 +382,17 @@ export default function Page() {
                 <Card 
                   className="p-6 backdrop-blur-sm bg-violet-100 dark:bg-violet-500/20 border-violet-500/20 hover:shadow-md transition-shadow duration-300"
                 >
-                  <div className="grid grid-cols-3 gap-4">
-                    {[
-                      { label: "100% local", desc: "Local processing" },
-                      { label: "Private", desc: "No data collection" },
-                      { label: "Flexible", desc: "Works offline" }
-                    ].map((item, i) => (
-                      <div key={i} className="text-left">
-                        <div className="font-medium mb-1 text-violet-600 dark:text-violet-400">{item.label}</div>
-                        <div className="text-sm text-violet-950 dark:text-violet-200">{item.desc}</div>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {[
+                    { label: "100% local", desc: "Local processing" },
+                    { label: "Private", desc: "No data collection" },
+                    { label: "Flexible", desc: "Works offline" }
+                  ].map((item, i) => (
+                    <div key={i} className="text-left">
+                    <div className="font-medium mb-1 text-violet-600 dark:text-violet-400">{item.label}</div>
+                    <div className="text-sm text-violet-950 dark:text-violet-200">{item.desc}</div>
+                    </div>
+                  ))}
                   </div>
                 </Card>
               </div>
