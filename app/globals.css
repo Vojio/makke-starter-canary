@@ -9,8 +9,14 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@layer base {
+  p, h1, h2, h3, h4, h5, h6, span, div {
+    text-wrap: balance;
+  }
+}
+
 :root {
-  --background: color(display-p3 0.994 0.968 0.934);
+  --background: color(display-p3 0.989 0.938 0.85);
   --foreground: color(display-p3 0.236 0.202 0.183);
   --card: color(display-p3 0.995 0.988 0.985);
   --card-foreground: hsl(240 10% 3.9%);

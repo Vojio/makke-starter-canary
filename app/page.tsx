@@ -6,13 +6,10 @@ import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { useEffect, useState, memo, useRef } from "react"
-import { motion, AnimatePresence, useInView, Variants } from "framer-motion"
+import { useEffect, useState, memo } from "react"
 
 // Import Lucide React Icons
 import { 
-  Apple, 
-  MonitorIcon, 
   MessageCircle,
   Coffee,
   Folder,
@@ -27,271 +24,147 @@ import {
   CheckSquare
 } from "lucide-react"
 
-// Memoized components for better performance
-const MotionLink = memo(motion(Link))
-const MotionCard = memo(motion(Card))
-const MotionBadge = memo(motion(Badge))
-
-// Animation variants
-const fadeInUpVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-}
-
-const staggerContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
-}
-
-const logoVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.7 }
-  },
-  hover: {
-    scale: 1.05,
-    transition: { duration: 0.3 }
-  }
-}
-
-// Removed unused cardHoverVariants
-
-const cardBarVariants: Variants = {
-  initial: { height: "100%", width: 2, backgroundColor: "rgba(var(--primary), 0.2)" },
-  hover: { 
-    backgroundColor: "var(--primary)",
-    transition: { duration: 0.5 }
-  }
-}
-
-const buttonGroupVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { 
-      duration: 0.7,
-      delayChildren: 0.3,
-      staggerChildren: 0.1
-    }
-  }
-}
-
 export default function Page() {
   const currentYear = new Date().getFullYear()
   const [mounted, setMounted] = useState(false)
 
-  // Prevents animation on page load
+  // For hydration
   useEffect(() => {
     setMounted(true)
   }, [])
   
   return (
     <div className="min-h-screen flex flex-col">
-      <motion.nav 
-        className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/10"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-      >
+      <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/10">
         <div className="max-w-[1200px] mx-auto px-4 w-full">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center">
-              <motion.div
-                whileHover="hover"
-                initial="initial"
-                animate="animate"
-                className="flex items-center gap-2"
-              >
-                <Link href="#" className="flex items-center gap-2 group">
-                  <motion.div 
-                    className="relative overflow-hidden"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Image
-                      src="/RepoPromptLogo_NoBG.png"
-                      alt="Repo Prompt"
-                      width={32}
-                      height={32}
-                      className="drop-shadow-md filter grayscale hover:grayscale-0 transition-filter duration-300"
-                    />
-                  </motion.div>
+              <div className="flex items-center gap-2">
+                <Link href="#" className="flex items-center gap-2 group px-2 py-1.5 rounded-md hover:bg-card/60 transition-all duration-300">
+                  <div className="relative overflow-hidden">
+                  <Image
+                    src="/RepoPromptLogo_NoBG.png"
+                    alt="Repo Prompt"
+                    width={32}
+                    height={32}
+                    className="drop-shadow-md filter grayscale group-hover:grayscale-0 transition-filter duration-300"
+                  />
+                  </div>
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <MotionBadge
-                      variant="outline"
-                      className="font-medium text-sm"
-                      transition={{ duration: 0.3 }}
-                    >
-                      Repo Prompt
-                    </MotionBadge>
+                  <p className="font-bold text-base text-foreground">
+                    Repo Prompt
+                  </p>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             </div>
             
             <div className="flex items-center gap-8 md:gap-12">
-              <MotionLink
+              <Link
                 href="https://testflight.apple.com/join/nBWkUJD6"
-                className="text-sm font-medium text-muted-foreground"
-                transition={{ duration: 0.2 }}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 Mac Download
-              </MotionLink>
-              <MotionLink
+              </Link>
+              <Link
                 href="https://discord.com/invite/NtbFDAJPGM"
-                className="text-sm font-medium text-muted-foreground"
-                transition={{ duration: 0.2 }}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 Join Discord
-              </MotionLink>
-              <MotionLink
+              </Link>
+              <Link
                 href="https://ko-fi.com/repoprompt"
-                className="text-sm font-medium text-muted-foreground"
-                transition={{ duration: 0.2 }}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 Donate
-              </MotionLink>
+              </Link>
               <ThemeToggle />
             </div>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       <main className="flex-grow">
         <div className="px-4 pt-16 md:pt-24">
-          <div className="mx-auto max-w-[900px] text-center">
-            <AnimatePresence>
-              {mounted && (
-                <div className="mb-24">
-                  <motion.div
-                    className="group relative mx-auto mb-8 w-[140px] cursor-pointer"  
-                    variants={logoVariants}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover="hover"
-                  >  
-                    <Image
-                      src="/RepoPromptLogo_NoBG.png"
-                      alt="Repo Prompt Logo"
-                      priority
-                      width={140}
-                      height={140}
-                      className="drop-shadow-lg group-hover:drop-shadow-xl"
-                    />
-                    <motion.div 
-                      className="absolute inset-0 bg-primary/5 rounded-full -z-10 filter"
-                      initial={{ opacity: 0.7, filter: "blur(10px)" }}
-                      animate={{ opacity: 0.7, filter: "blur(10px)" }}
-                      whileHover={{ 
-                        opacity: 0.9, 
-                        filter: "blur(16px)",
-                        backgroundColor: "rgba(var(--primary), 0.1)"
-                      }}
-                      transition={{ duration: 0.5 }}
-                    ></motion.div>
-                  </motion.div>
-                  
-                  <motion.h1 
-                    className="mb-6 text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl"
-                    variants={fadeInUpVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.2 }}
-                  >
-                    Repo Prompt
-                  </motion.h1>
-                  
-                  <motion.p 
-                    className="mb-3 text-xl text-muted-foreground"
-                    variants={fadeInUpVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.3 }}
-                  >
-                    Code smarter with AI—no more messy copy-pasting.
-                  </motion.p>
-                  
-                  <motion.p 
-                    className="mb-12 text-lg text-muted-foreground"
-                    variants={fadeInUpVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.4 }}
-                  >
-                    Let Repo Prompt structure your prompts and apply AI changes for you.
-                  </motion.p>
-                  
-                  <motion.div
-                    className="flex flex-wrap justify-center gap-4"
-                    variants={buttonGroupVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    <motion.div className="flex flex-wrap gap-3 justify-center" variants={staggerContainerVariants}>
-                      <motion.div variants={fadeInUpVariants}>
-                        <Button variant="default" size="lg" className="rounded-full hover:shadow-md" asChild>
-                          <Link href="https://testflight.apple.com/join/nBWkUJD6">
-                            <Apple className="mr-2 h-4 w-4" />
-                            Download for Mac
-                          </Link>
-                        </Button>
-                      </motion.div>
-                      <motion.div variants={fadeInUpVariants}>
-                        <Button variant="outline" size="lg" className="rounded-full bg-card hover:bg-card/80 hover:shadow-md" asChild>
-                          <Link href="https://docs.google.com/forms/d/e/1FAIpQLSftCSyLtD1Zl-80dHfXmzczkWvnIPPjKZ-melbXBd4yEInBAw/viewform">
-                            <MonitorIcon className="mr-2 h-4 w-4" />
-                            Windows/Linux Waitlist
-                          </Link>
-                        </Button>
-                      </motion.div>
-                    </motion.div>
-                    <motion.div className="flex flex-wrap gap-3 justify-center" variants={staggerContainerVariants}>
-                      <motion.div variants={fadeInUpVariants}>
-                        <Button size="lg" className="rounded-full bg-violet-500 text-purple-50 hover:bg-violet-500/80 hover:shadow-md" asChild>
-                          <Link href="https://discord.com/invite/NtbFDAJPGM">
-                            <MessageCircle className="mr-2 h-4 w-4" />
-                            Join Discord
-                          </Link>
-                        </Button>
-                      </motion.div>
-                      <motion.div variants={fadeInUpVariants}>
-                        <Button size="lg" className="rounded-full bg-orange-400 text-orange-50 hover:bg-orange-400/80 hover:shadow-md" asChild>
-                          <Link href="https://ko-fi.com/repoprompt">
-                            <Coffee className="mr-2 h-4 w-4" />
-                            Donate
-                          </Link>
-                        </Button>
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
+          <div className="mx-auto max-w-[900px] text-left">
+            {mounted && (
+              <div className="mb-16">
+                <div className="group relative mx-0 mb-8 w-[140px] cursor-pointer">  
+                  <Image
+                    src="/RepoPromptLogo_NoBG.png"
+                    alt="Repo Prompt Logo"
+                    priority
+                    width={140}
+                    height={140}
+                    className="drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300"
+                  />
+                  <div 
+                    className="absolute inset-0 bg-primary/5 rounded-full -z-10 filter blur-lg opacity-70 group-hover:opacity-90 group-hover:blur-xl group-hover:bg-primary/10 transition-all duration-300"
+                  ></div>
                 </div>
-              )}
-            </AnimatePresence>
+                
+                  <Badge variant="outline" className="bg-blue-100 text-blue-600 border-blue-500/20 mr-2 mb-4">
+                  macOS Native
+                  </Badge>
+                <h1 className="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
+                  Repo Prompt
+                </h1>
+                
+                <p className="mb-2 text-xl text-medium text-muted-foreground">
+                  Code smarter with AI—no more messy copy-pasting.
+                </p>
+                <p className="mb-8 text-lg text-muted-foreground">
+                  Let Repo Prompt structure your prompts and apply AI changes for you.
+                </p>
+                
+                <div className="flex flex-wrap justify-start gap-4">
+                  <div className="flex flex-wrap gap-3 justify-start">
+                    <div>
+                      <Button variant="default" size="lg" className="rounded-full hover:shadow-md" asChild>
+                        <Link href="https://testflight.apple.com/join/nBWkUJD6">
+                          Download for Mac
+                        </Link>
+                      </Button>
+                    </div>
+                    <div>
+                      <Button variant="outline" size="lg" className="rounded-full bg-card hover:bg-card/80 hover:shadow-md" asChild>
+                        <Link href="https://docs.google.com/forms/d/e/1FAIpQLSftCSyLtD1Zl-80dHfXmzczkWvnIPPjKZ-melbXBd4yEInBAw/viewform">
+                          Windows/Linux Waitlist
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3 justify-start">
+                    <div>
+                      <Button size="lg" className="rounded-full bg-violet-500 text-purple-50 hover:bg-violet-500/80 hover:shadow-md" asChild>
+                        <Link href="https://discord.com/invite/NtbFDAJPGM">
+                          <MessageCircle className="mr-2 h-4 w-4" />
+                          Join Discord
+                        </Link>
+                      </Button>
+                    </div>
+                    <div>
+                      <Button size="lg" className="rounded-full bg-orange-400 text-orange-50 hover:bg-orange-400/80 hover:shadow-md" asChild>
+                        <Link href="https://ko-fi.com/repoprompt">
+                          <Coffee className="mr-2 h-4 w-4" />
+                          Donate
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Why Repo Prompt Section */}
-            <SectionWithInViewAnimation
+            <Section
               id="why-repo-prompt"
               className="mb-24 scroll-m-20"
               badgeText="The Problem"
               badgeVariant="orange"
               title="Why Repo Prompt?"
             >
-              <motion.div
-                className="grid gap-6 sm:grid-cols-3"
-                variants={staggerContainerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-              >
+              <div className="grid gap-6 sm:grid-cols-3">
                 {[
                   {
                     title: "Zipping your whole repo?",
@@ -306,222 +179,156 @@ export default function Page() {
                     description: "Select just the files that matter"
                   }
                 ].map((feature, i) => (
-                  <MotionCard 
+                  <Card 
                     key={i} 
-                    className="p-6 group hover:shadow-md border-border/50 hover:border-border"
-                    variants={fadeInUpVariants}
-                    whileHover="hover"
-                    initial="initial"
+                    className="p-6 group hover:shadow-md border-border/50 hover:border-border transition-all duration-300"
                   >
-                    {/* Added icon based on index */}
                     <div className="mb-2">
                       {i === 0 ? <Folder size={24} className="text-orange-500" /> : i === 1 ? <AlertTriangle size={24} className="text-orange-500" /> : <CodeIcon size={24} className="text-orange-500" />}
                     </div>
                     <div className="border-l-2 border-primary/50 pl-4 group-hover:border-primary transition-colors duration-300">
-                      <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
+                      <h3 className="text-lg font-medium mb-1 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
                       <p className="text-muted-foreground text-sm">{feature.description}</p>
                     </div>
-                  </MotionCard>
+                  </Card>
                 ))}
-              </motion.div>
-            </SectionWithInViewAnimation>
+              </div>
+            </Section>
 
             {/* Features Section */}
-            <SectionWithInViewAnimation
-              id="features"
-              className="mb-24 scroll-m-20"
-              badgeText="Key Features"
-              badgeVariant="orange"
-              title="How It Works"
-            >
-              <div className="mx-auto max-w-3xl">
-                <motion.div
-                  className="grid gap-6"
-                  variants={staggerContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                >
-                  {[
-                    {
-                      title: "Find & Select Files",
-                      description: "Manually pick files with advanced filtering",
-                      badge: "Active"
-                    },
-                    {
-                      title: "Optimized XML Output",
-                      description: "Structured file tree and meta-prompts",
-                      badge: "Active"
-                    },
-                    {
-                      title: "Codemap Extraction",
-                      description: "Extracts API definitions and references",
-                      badge: "New"
-                    },
-                    {
-                      title: "Token Usage Estimation",
-                      description: "Know your context size before sending",
-                      badge: "Active"
-                    }
-                  ].map((feature, i) => (
-                    <MotionCard 
-                      key={i}
-                      className="p-6 overflow-hidden relative group border-border/50 hover:border-border"
-                      variants={fadeInUpVariants}
-                      whileHover="hover"
-                      initial="initial"
-                    >
-                      {/* Added icon based on index */}
-                      <div className="mb-2">
-                        {i === 0 ? <Search size={24} className="text-orange-500" /> : i === 1 ? <FileText size={24} className="text-orange-500" /> : i === 2 ? <MapIcon size={24} className="text-orange-500" /> : <Cpu size={24} className="text-orange-500" />}
-                      </div>
-                      <motion.div 
-                        className="absolute top-0 left-0 w-1 h-full bg-primary/20"
-                        variants={cardBarVariants}
-                        initial="initial"
-                        whileHover="hover"
-                      ></motion.div>
-                      <div className="flex justify-between items-center mb-3">
-                        <motion.h3 
-                          className="text-lg font-medium"
-                          whileHover={{ color: "var(--primary)" }}
-                        >
-                          {feature.title}
-                        </motion.h3>
-                        <motion.div 
-                          className="inline-flex h-6 items-center rounded-full bg-muted text-muted-foreground px-2 text-xs font-medium"
-                          whileHover={{ backgroundColor: "rgba(var(--primary), 0.1)" }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {feature.badge}
-                        </motion.div>
-                      </div>
-                      <p className="text-muted-foreground text-sm">{feature.description}</p>
-                    </MotionCard>
-                  ))}
-                </motion.div>
+            <div className="mb-24 scroll-m-20" id="features">
+              <div className="mb-8 text-left">
+                <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 mb-4">
+                  Key Features
+                </Badge>
+                <h2 className="mb-3 text-3xl font-semibold">
+                  How It Works
+                </h2>
               </div>
-            </SectionWithInViewAnimation>
+              
+              <div className="bg-card/50 py-10 px-6 -mx-4 rounded-lg">
+                <div className="mx-auto max-w-3xl">
+                  <div className="grid gap-6">
+                    {[
+                      {
+                        title: "Find & Select Files",
+                        description: "Manually pick files with advanced filtering"
+                      },
+                      {
+                        title: "Optimized XML Output",
+                        description: "Structured file tree and meta-prompts"
+                      },
+                      {
+                        title: "Codemap Extraction",
+                        description: "Extracts API definitions and references"
+                      },
+                      {
+                        title: "Token Usage Estimation",
+                        description: "Know your context size before sending"
+                      }
+                    ].map((feature, i) => (
+                      <Card 
+                        key={i}
+                        className="p-6 group border-border/50 hover:border-border transition-all duration-300"
+                      >
+                        <div className="mb-2">
+                          {i === 0 ? <Search size={24} className="text-blue-500" /> : i === 1 ? <FileText size={24} className="text-blue-500" /> : i === 2 ? <MapIcon size={24} className="text-blue-500" /> : <Cpu size={24} className="text-blue-500" />}
+                        </div>
+                        <h3 className="text-lg font-medium mb-1 hover:text-primary transition-colors duration-300">
+                          {feature.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm">{feature.description}</p>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Integration Section */}
-            <SectionWithInViewAnimation
+            <Section
               id="integrations"
               className="mb-24 scroll-m-20"
               badgeText="Integrations"
-              badgeVariant="orange"
+              badgeVariant="purple"
               title="Works with Any Model"
               subtitle="Supports OpenAI, Anthropic, DeepSeek, Gemini, Azure, and local models—keeping your workflow private
                     and offline when needed"
             >
               <div className="mx-auto max-w-3xl">
-                <motion.div
-                  className="grid gap-6 sm:grid-cols-2"
-                  variants={staggerContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                >
-                  <MotionCard 
-                    className="p-6 group hover:shadow-md border-border/50 hover:border-border"
-                    variants={fadeInUpVariants}
-                    whileHover="hover"
-                    initial="initial"
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <Card 
+                    className="p-6 group hover:shadow-md border-border/50 hover:border-border transition-all duration-300"
                   >
-                    <motion.h3 
-                      className="mb-3 text-lg font-medium"
-                      whileHover={{ color: "var(--primary)" }}
-                      transition={{ duration: 0.3 }}
-                    >
+                    <h3 className="mb-1 text-lg font-medium hover:text-primary transition-colors duration-300">
                       Clipboard Integration
-                    </motion.h3>
+                    </h3>
                     <p className="text-muted-foreground text-sm">
                       Seamlessly copy structured prompts as XML to use in any AI chat app—your data stays local
                     </p>
-                  </MotionCard>
-                  <MotionCard 
-                    className="p-6 group hover:shadow-md border-border/50 hover:border-border"
-                    variants={fadeInUpVariants}
-                    whileHover="hover"
-                    initial="initial"
+                  </Card>
+                  <Card 
+                    className="p-6 group hover:shadow-md border-border/50 hover:border-border transition-all duration-300"
                   >
-                    <motion.h3 
-                      className="mb-3 text-lg font-medium"
-                      whileHover={{ color: "var(--primary)" }}
-                      transition={{ duration: 0.3 }}
-                    >
+                    <h3 className="mb-1 text-lg font-medium hover:text-primary transition-colors duration-300">
                       Precise XML Parsing
-                    </motion.h3>
+                    </h3>
                     <p className="text-muted-foreground text-sm">
                       Runs locally to format LLM responses into XML, supporting private codebases
                     </p>
-                  </MotionCard>
-                </motion.div>
+                  </Card>
+                </div>
               </div>
-            </SectionWithInViewAnimation>
+            </Section>
 
             {/* Workflow Section */}
-            <SectionWithInViewAnimation
-              id="workflow"
-              className="mb-24 scroll-m-20"
-              badgeText="Workflow"
-              badgeVariant="orange"
-              title="Your Workflow"
-            >
-              <motion.div
-                className="grid gap-6 sm:grid-cols-3"
-                variants={staggerContainerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                {[
-                  {
-                    title: "Compose",
-                    description:
-                      "Select files and folders for your prompt's context. Use saved prompts and a repository map to guide the AI's output"
-                  },
-                  {
-                    title: "Chat",
-                    description:
-                      "Iterate on your files, or learn about how they work, with full control over the context"
-                  },
-                  {
-                    title: "Review",
-                    description: "Review all AI made changes, file by file, and approve changes, piecemeal or in bulk"
-                  },
-                ].map((step, i) => (
-                  <MotionCard 
-                    key={i} 
-                    className="p-6 text-center group relative overflow-hidden border-border/50 hover:border-border"
-                    variants={fadeInUpVariants}
-                    whileHover="hover"
-                    initial="initial"
-                  >
-                    {/* Added icon for workflow steps */}
-                    <div className="mb-2">
-                      {i === 0 ? <Edit3 size={24} className="text-orange-500" /> : i === 1 ? <MessageCircle size={24} className="text-orange-500" /> : <CheckSquare size={24} className="text-orange-500" />}
-                    </div>
-                    <motion.div 
-                      className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0"
-                      initial={{ y: "100%" }}
-                      whileHover={{ y: 0 }}
-                      transition={{ duration: 0.5 }}
-                    ></motion.div>
-                    <motion.h3 
-                      className="mb-3 text-lg font-medium"
-                      whileHover={{ color: "var(--primary)" }}
-                      transition={{ duration: 0.3 }}
+            <div className="mb-24 scroll-m-20" id="workflow">
+              <div className="mb-8 text-left">
+                <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 mb-4">
+                  Workflow
+                </Badge>
+                <h2 className="mb-3 text-3xl font-semibold">
+                  Your Workflow
+                </h2>
+              </div>
+              
+              <div className="bg-card/50 py-10 px-6 -mx-4 rounded-lg">
+                <div className="grid gap-6 sm:grid-cols-3 max-w-3xl mx-auto">
+                  {[
+                    {
+                      title: "Compose",
+                      description:
+                        "Select files and folders for your prompt's context. Use saved prompts and a repository map to guide the AI's output"
+                    },
+                    {
+                      title: "Chat",
+                      description:
+                        "Iterate on your files, or learn about how they work, with full control over the context"
+                    },
+                    {
+                      title: "Review",
+                      description: "Review all AI made changes, file by file, and approve changes, piecemeal or in bulk"
+                    },
+                  ].map((step, i) => (
+                    <Card 
+                      key={i} 
+                      className="p-6 text-left group relative overflow-hidden border-border/50 hover:border-border transition-all duration-300"
                     >
-                      {step.title}
-                    </motion.h3>
-                    <p className="text-muted-foreground text-sm">{step.description}</p>
-                  </MotionCard>
-                ))}
-              </motion.div>
-            </SectionWithInViewAnimation>
+                      <div className="mb-2">
+                        {i === 0 ? <Edit3 size={24} className="text-green-600" /> : i === 1 ? <MessageCircle size={24} className="text-green-600" /> : <CheckSquare size={24} className="text-green-600" />}
+                      </div>
+                      <h3 className="mb-1 text-lg font-medium hover:text-green-600 transition-colors duration-300">
+                        {step.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm">{step.description}</p>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* Privacy Section */}
-            <SectionWithInViewAnimation
+            <Section
               id="privacy"
               className="mb-24 scroll-m-20"
               badgeText="Privacy First"
@@ -530,48 +337,35 @@ export default function Page() {
               subtitle="Connect to AI providers without intermediaries. Keep your workflow private and offline when needed."
             >
               <div className="mx-auto max-w-3xl">
-                <MotionCard 
-                  className="p-6 backdrop-blur-sm bg-violet-100 dark:bg-violet-500/20 border-violet-500/20"
-                  whileHover={{ boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                  transition={{ duration: 0.3 }}
+                <Card 
+                  className="p-6 backdrop-blur-sm bg-violet-100 dark:bg-violet-500/20 border-violet-500/20 hover:shadow-md transition-shadow duration-300"
                 >
-                  <motion.div
-                  className="grid grid-cols-3 gap-4"
-                  variants={staggerContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                  >
-                  {[
-                    { label: "100% local", desc: "Local processing" },
-                    { label: "Private", desc: "No data collection" },
-                    { label: "Flexible", desc: "Works offline" }
-                  ].map((item, i) => (
-                    <motion.div key={i} className="text-center" variants={fadeInUpVariants}>
-                    <div className="font-medium mb-1 text-violet-950 dark:text-violet-400">{item.label}</div>
-                    <div className="text-sm text-violet-500 dark:text-violet-200">{item.desc}</div>
-                    </motion.div>
-                  ))}
-                  </motion.div>
-                </MotionCard>
+                  <div className="grid grid-cols-3 gap-4">
+                    {[
+                      { label: "100% local", desc: "Local processing" },
+                      { label: "Private", desc: "No data collection" },
+                      { label: "Flexible", desc: "Works offline" }
+                    ].map((item, i) => (
+                      <div key={i} className="text-left">
+                        <div className="font-medium mb-1 text-violet-950 dark:text-violet-400">{item.label}</div>
+                        <div className="text-sm text-violet-500 dark:text-violet-200">{item.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
               </div>
-            </SectionWithInViewAnimation>
+            </Section>
             
             {/* FAQ Section */}
-            <SectionWithInViewAnimation
+            <Section
               id="faq"
               className="mb-24 scroll-m-20"
               badgeText="FAQ"
-              badgeVariant="orange"
+              badgeVariant="blue"
               title="How It Makes Coding Easier"
             >
               <div className="mx-auto max-w-3xl">
-                <motion.div
-                  variants={staggerContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
-                >
+                <div>
                   {[
                     {
                       question: "When you use Claude or ChatGPT for code, how do you put your files into context?",
@@ -586,37 +380,27 @@ export default function Page() {
                       answer: "Unlike tools that run RAG on your prompt when it's over 32k tokens, with Repo Prompt you get full context with ordering, plus code maps & file tree auto included."
                     }
                   ].map((faq, i) => (
-                    <MotionCard 
+                    <Card 
                       key={i} 
-                      className={`p-6 hover:shadow-md border-border/50 hover:border-border ${i < 2 ? 'mb-4' : ''}`}
-                      variants={fadeInUpVariants}
-                      whileHover="hover"
-                      initial="initial"
+                      className={`p-6 hover:shadow-md border-border/50 hover:border-border transition-all duration-300 ${i < 2 ? 'mb-4' : ''}`}
                     >
-                      {/* Added FAQ icon */}
                       <div className="mb-2">
-                        <HelpCircle size={24} className="text-orange-500" />
+                        <HelpCircle size={24} className="text-blue-500" />
                       </div>
-                      <h3 className="text-lg font-medium mb-2">{faq.question}</h3>
+                      <h3 className="text-lg font-medium mb-1">{faq.question}</h3>
                       <p className="text-muted-foreground text-sm">
                         {faq.answer}
                       </p>
-                    </MotionCard>
+                    </Card>
                   ))}
-                </motion.div>
+                </div>
               </div>
-            </SectionWithInViewAnimation>
+            </Section>
           </div>
         </div>
       </main>
 
-      <motion.footer 
-        className="border-t mt-auto"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
+      <footer className="border-t mt-auto">
         <div className="py-12">
           <div className="mx-auto max-w-[900px] px-4">
             <div className="grid gap-8 sm:grid-cols-2">
@@ -625,34 +409,30 @@ export default function Page() {
                   © {currentYear} Repo Prompt. All rights reserved.
                 </p>
               </div>
-              <div className="flex justify-end gap-6">
-                <MotionLink 
+              <div className="flex justify-start sm:justify-end gap-6">
+                <Link 
                   href="mailto:contact@repoprompt.com" 
-                  className="text-sm text-muted-foreground"
-                  whileHover={{ color: "var(--foreground)" }}
-                  transition={{ duration: 0.2 }}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   Contact
-                </MotionLink>
-                <MotionLink 
+                </Link>
+                <Link 
                   href="#" 
-                  className="text-sm text-muted-foreground"
-                  whileHover={{ color: "var(--foreground)" }}
-                  transition={{ duration: 0.2 }}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   Privacy Policy
-                </MotionLink>
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </motion.footer>
+      </footer>
     </div>
   )
 }
 
-// Reusable section component with InView animations
-const SectionWithInViewAnimation = memo(({
+// Reusable section component without animations
+const Section = memo(({
   id,
   className,
   badgeText,
@@ -669,9 +449,6 @@ const SectionWithInViewAnimation = memo(({
   subtitle?: string,
   children: React.ReactNode
 }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  
   const badgeClasses = {
     purple: "bg-purple-500/10 text-purple-500 border-purple-500/20",
     blue: "bg-blue-500/10 text-blue-500 border-blue-500/20",
@@ -680,49 +457,29 @@ const SectionWithInViewAnimation = memo(({
   }
   
   return (
-    <motion.section 
+    <section 
       id={id} 
       className={className}
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.7 }}
     >
       <div className="mx-auto max-w-3xl">
-        <div className="mb-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Badge variant="outline" className={`${badgeClasses[badgeVariant]} mb-4`}>
-              {badgeText}
-            </Badge>
-          </motion.div>
-          <motion.h2 
-            className="mb-4 text-3xl font-semibold"
-            initial={{ opacity: 0, y: 10 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+        <div className="mb-8 text-left">
+          <Badge variant="outline" className={`${badgeClasses[badgeVariant]} mb-4`}>
+            {badgeText}
+          </Badge>
+          <h2 className="mb-3 text-3xl font-semibold">
             {title}
-          </motion.h2>
+          </h2>
           {subtitle && (
-            <motion.p 
-              className="text-lg text-muted-foreground"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
+            <p className="text-lg text-muted-foreground">
               {subtitle}
-            </motion.p>
+            </p>
           )}
         </div>
         {children}
       </div>
-    </motion.section>
+    </section>
   )
 })
 
-SectionWithInViewAnimation.displayName = "SectionWithInViewAnimation"
+Section.displayName = "Section"
 
