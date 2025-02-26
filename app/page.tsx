@@ -14,7 +14,17 @@ import {
   Apple, 
   MonitorIcon, 
   MessageCircle,
-  Coffee
+  Coffee,
+  Folder,
+  AlertTriangle,
+  Code as CodeIcon,
+  Search,
+  FileText,
+  Map as MapIcon,
+  Cpu,
+  HelpCircle,
+  Edit3,
+  CheckSquare
 } from "lucide-react"
 
 // Memoized components for better performance
@@ -115,18 +125,15 @@ export default function Page() {
                       className="drop-shadow-md filter grayscale hover:grayscale-0 transition-filter duration-300"
                     />
                   </motion.div>
-                  <MotionBadge
-                    variant="outline"
-                    className="font-medium text-sm"
-                    whileHover={{ 
-                      backgroundColor: "rgba(249, 115, 22, 0.1)", 
-                      color: "#f97316", 
-                      borderColor: "#f97316" 
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    Repo Prompt
-                  </MotionBadge>
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <MotionBadge
+                      variant="outline"
+                      className="font-medium text-sm"
+                      transition={{ duration: 0.3 }}
+                    >
+                      Repo Prompt
+                    </MotionBadge>
+                  </div>
                 </Link>
               </motion.div>
             </div>
@@ -134,24 +141,21 @@ export default function Page() {
             <div className="flex items-center gap-8 md:gap-12">
               <MotionLink
                 href="https://testflight.apple.com/join/nBWkUJD6"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground"
-                whileHover={{ color: "var(--foreground)" }}
+                className="text-sm font-medium text-muted-foreground"
                 transition={{ duration: 0.2 }}
               >
                 Mac Download
               </MotionLink>
               <MotionLink
                 href="https://discord.com/invite/NtbFDAJPGM"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground"
-                whileHover={{ color: "var(--foreground)" }}
+                className="text-sm font-medium text-muted-foreground"
                 transition={{ duration: 0.2 }}
               >
                 Join Discord
               </MotionLink>
               <MotionLink
                 href="https://ko-fi.com/repoprompt"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground"
-                whileHover={{ color: "var(--foreground)" }}
+                className="text-sm font-medium text-muted-foreground"
                 transition={{ duration: 0.2 }}
               >
                 Donate
@@ -234,7 +238,7 @@ export default function Page() {
                   >
                     <motion.div className="flex flex-wrap gap-3 justify-center" variants={staggerContainerVariants}>
                       <motion.div variants={fadeInUpVariants}>
-                        <Button variant="outline" size="lg" className="rounded-full hover:shadow-md" asChild>
+                        <Button variant="default" size="lg" className="rounded-full hover:shadow-md" asChild>
                           <Link href="https://testflight.apple.com/join/nBWkUJD6">
                             <Apple className="mr-2 h-4 w-4" />
                             Download for Mac
@@ -242,7 +246,7 @@ export default function Page() {
                         </Button>
                       </motion.div>
                       <motion.div variants={fadeInUpVariants}>
-                        <Button variant="outline" size="lg" className="rounded-full hover:shadow-md" asChild>
+                        <Button variant="outline" size="lg" className="rounded-full bg-card hover:bg-card/80 hover:shadow-md" asChild>
                           <Link href="https://docs.google.com/forms/d/e/1FAIpQLSftCSyLtD1Zl-80dHfXmzczkWvnIPPjKZ-melbXBd4yEInBAw/viewform">
                             <MonitorIcon className="mr-2 h-4 w-4" />
                             Windows/Linux Waitlist
@@ -278,7 +282,7 @@ export default function Page() {
               id="why-repo-prompt"
               className="mb-24 scroll-m-20"
               badgeText="The Problem"
-              badgeVariant="purple"
+              badgeVariant="orange"
               title="Why Repo Prompt?"
             >
               <motion.div
@@ -309,6 +313,10 @@ export default function Page() {
                     whileHover="hover"
                     initial="initial"
                   >
+                    {/* Added icon based on index */}
+                    <div className="mb-2">
+                      {i === 0 ? <Folder size={24} className="text-orange-500" /> : i === 1 ? <AlertTriangle size={24} className="text-orange-500" /> : <CodeIcon size={24} className="text-orange-500" />}
+                    </div>
                     <div className="border-l-2 border-primary/50 pl-4 group-hover:border-primary transition-colors duration-300">
                       <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
                       <p className="text-muted-foreground text-sm">{feature.description}</p>
@@ -323,7 +331,7 @@ export default function Page() {
               id="features"
               className="mb-24 scroll-m-20"
               badgeText="Key Features"
-              badgeVariant="blue"
+              badgeVariant="orange"
               title="How It Works"
             >
               <div className="mx-auto max-w-3xl">
@@ -363,6 +371,10 @@ export default function Page() {
                       whileHover="hover"
                       initial="initial"
                     >
+                      {/* Added icon based on index */}
+                      <div className="mb-2">
+                        {i === 0 ? <Search size={24} className="text-orange-500" /> : i === 1 ? <FileText size={24} className="text-orange-500" /> : i === 2 ? <MapIcon size={24} className="text-orange-500" /> : <Cpu size={24} className="text-orange-500" />}
+                      </div>
                       <motion.div 
                         className="absolute top-0 left-0 w-1 h-full bg-primary/20"
                         variants={cardBarVariants}
@@ -452,7 +464,7 @@ export default function Page() {
               id="workflow"
               className="mb-24 scroll-m-20"
               badgeText="Workflow"
-              badgeVariant="purple"
+              badgeVariant="orange"
               title="Your Workflow"
             >
               <motion.div
@@ -485,6 +497,10 @@ export default function Page() {
                     whileHover="hover"
                     initial="initial"
                   >
+                    {/* Added icon for workflow steps */}
+                    <div className="mb-2">
+                      {i === 0 ? <Edit3 size={24} className="text-orange-500" /> : i === 1 ? <MessageCircle size={24} className="text-orange-500" /> : <CheckSquare size={24} className="text-orange-500" />}
+                    </div>
                     <motion.div 
                       className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0"
                       initial={{ y: "100%" }}
@@ -509,33 +525,33 @@ export default function Page() {
               id="privacy"
               className="mb-24 scroll-m-20"
               badgeText="Privacy First"
-              badgeVariant="blue"
+              badgeVariant="orange"
               title="Your Data, Your Control"
               subtitle="Connect to AI providers without intermediaries. Keep your workflow private and offline when needed."
             >
               <div className="mx-auto max-w-3xl">
                 <MotionCard 
-                  className="p-6 backdrop-blur-sm bg-primary/5 border-primary/20"
+                  className="p-6 backdrop-blur-sm bg-violet-100 dark:bg-violet-500/20 border-violet-500/20"
                   whileHover={{ boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    className="grid grid-cols-3 gap-4"
-                    variants={staggerContainerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
+                  className="grid grid-cols-3 gap-4"
+                  variants={staggerContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-100px" }}
                   >
-                    {[
-                      { label: "100% local", desc: "Local processing" },
-                      { label: "Private", desc: "No data collection" },
-                      { label: "Flexible", desc: "Works offline" }
-                    ].map((item, i) => (
-                      <motion.div key={i} className="text-center" variants={fadeInUpVariants}>
-                        <div className="font-medium mb-1 text-primary">{item.label}</div>
-                        <div className="text-sm text-muted-foreground">{item.desc}</div>
-                      </motion.div>
-                    ))}
+                  {[
+                    { label: "100% local", desc: "Local processing" },
+                    { label: "Private", desc: "No data collection" },
+                    { label: "Flexible", desc: "Works offline" }
+                  ].map((item, i) => (
+                    <motion.div key={i} className="text-center" variants={fadeInUpVariants}>
+                    <div className="font-medium mb-1 text-violet-950 dark:text-violet-400">{item.label}</div>
+                    <div className="text-sm text-violet-500 dark:text-violet-200">{item.desc}</div>
+                    </motion.div>
+                  ))}
                   </motion.div>
                 </MotionCard>
               </div>
@@ -546,7 +562,7 @@ export default function Page() {
               id="faq"
               className="mb-24 scroll-m-20"
               badgeText="FAQ"
-              badgeVariant="green"
+              badgeVariant="orange"
               title="How It Makes Coding Easier"
             >
               <div className="mx-auto max-w-3xl">
@@ -577,6 +593,10 @@ export default function Page() {
                       whileHover="hover"
                       initial="initial"
                     >
+                      {/* Added FAQ icon */}
+                      <div className="mb-2">
+                        <HelpCircle size={24} className="text-orange-500" />
+                      </div>
                       <h3 className="text-lg font-medium mb-2">{faq.question}</h3>
                       <p className="text-muted-foreground text-sm">
                         {faq.answer}

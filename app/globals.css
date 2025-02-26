@@ -10,9 +10,9 @@
 }
 
 :root {
-  --background: color(display-p3 0.995 0.988 0.985);
-  --foreground: hsl(240 10% 3.9%);
-  --card: hsl(0 0% 100%);
+  --background: color(display-p3 0.994 0.968 0.934);
+  --foreground: color(display-p3 0.236 0.202 0.183);
+  --card: color(display-p3 0.995 0.988 0.985);
   --card-foreground: hsl(240 10% 3.9%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(240 10% 3.9%);
@@ -42,7 +42,7 @@
 .dark {
   --background: color(display-p3 0.067 0.067 0.067);
   --foreground: oklch(0.98 0.016 73.684);
-  --card: hsl(240 10% 3.9%);
+  --card: color(display-p3 0.098 0.098 0.094);
   --card-foreground: hsl(0 0% 98%);
   --popover: hsl(240 10% 3.9%);
   --popover-foreground: hsl(0 0% 98%);
