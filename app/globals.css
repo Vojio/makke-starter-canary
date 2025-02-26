@@ -53,7 +53,7 @@
 
 .dark {
   --background: color(display-p3 0.067 0.067 0.067);
-  --foreground: color(display-p3 0.938 0.885 0.802);
+  --foreground: color(display-p3 0.933 0.933 0.926);
   --card: color(display-p3 0.098 0.098 0.094);
   --card-foreground: hsl(0 0% 98%);
   --popover: hsl(240 10% 3.9%);
