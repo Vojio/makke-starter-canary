@@ -131,7 +131,7 @@ export default function Page() {
                   <span className="text-xl">✨</span>
                 </div>
                 <h3 className="mb-3 text-xl font-medium">Zipping your whole repo?</h3>
-                <p className="text-neutral-500 dark:text-neutral-400">Too much bloat—send only what's needed</p>
+                <p className="text-neutral-500 dark:text-neutral-400">Too much bloat—send only what&apos;s needed</p>
               </div>
               <div className="group rounded-xl bg-white p-8 transition-all duration-300 hover:bg-neutral-50 dark:bg-neutral-800 dark:hover:bg-neutral-750">
                 <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 transition-transform duration-300 group-hover:scale-110 dark:bg-orange-900/30">
@@ -308,7 +308,7 @@ export default function Page() {
                   Contact
                 </Link>
                 <Link
-                  href="#"
+                  href="/privacy"
                   className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
                 >
                   Privacy Policy

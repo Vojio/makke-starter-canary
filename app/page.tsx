@@ -459,7 +459,7 @@ export default function Page() {
                   Contact
                 </Link>
                 <Link 
-                  href="#" 
+                  href="/privacy" 
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   Privacy Policy
