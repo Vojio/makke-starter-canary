@@ -8,6 +8,18 @@
 
 Repo Prompt helps you select, format, and transfer code to AI models like Claude and ChatGPT without messy copy-pasting. Structure your AI prompts and apply code changes easily.
 
+## Technical Stack
+
+- **Next.js**: v15.2.0-canary.75 (Canary Build)
+- **React**: v19.0.0
+- **TailwindCSS**: v4.0.9
+- **TypeScript**: v5.7.3
+- **Key Dependencies**:
+  - next-themes: v0.4.4 (Theme management)
+  - framer-motion: v12.4.7 (Animations)
+  - lucide-react: v0.476.0 (Icons)
+  - class-variance-authority: v0.7.1 (Component styles)
+
 ## Features
 
 - **Smart File Selection**: Manually pick files with advanced filtering options
