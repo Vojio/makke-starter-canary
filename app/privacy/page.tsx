@@ -143,7 +143,7 @@ export default function Page() {
               title="Our Privacy Commitment"
             >
               <Card className="p-6 border-border/50">
-                <p className="text-muted-foreground mb-4">
+                <p className="text-muted-foreground">
                   Repo Prompt is designed with privacy as a core principle. This privacy policy applies to versions of the application released on or after February 1, 2025. We do not collect or store your code, and we minimize data collection to the bare essentials for analytics and service improvements.
                 </p>
               </Card>
@@ -158,7 +158,7 @@ export default function Page() {
               title="Minimal Data Collection"
             >
               <Card className="p-6 border-border/50">
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-4">
                   <ShieldAlert size={24} className="text-orange-500 mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">
                     We collect minimal, anonymous usage data through PostHog&apos;s default setup to track daily active users. No personal data, file contents, or identifiable information is collected or stored.
@@ -202,7 +202,7 @@ export default function Page() {
                     </p>
                   </li>
                 </ul>
-                <div className="mt-6 p-4 dark:bg-background rounded-md border border-border/50">
+                <div className="mt-2 p-4 bg-muted dark:bg-background rounded-md border border-border/50">
                   <p className="text-sm text-muted-foreground">
                     While we take privacy seriously, we are not responsible for data handling by third-party API providers. Please review their privacy policies separately.
                   </p>
@@ -257,9 +257,9 @@ export default function Page() {
         </div>
       </main>
 
-      <footer className="border-t mt-auto">
+      <footer className="border-t border-foreground/10 mt-auto">
         <div className="py-12">
-          <div className="mx-auto max-w-[900px] px-4">
+          <div className="mx-auto max-w-[1200px] px-4">
             <div className="grid gap-8 sm:grid-cols-2">
               <div className="flex items-center">
                 <p className="text-sm text-muted-foreground">

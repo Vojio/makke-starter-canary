@@ -32,8 +32,8 @@
   --primary-foreground: hsl(0 0% 98%);
   --secondary: hsl(240 4.8% 95.9%);
   --secondary-foreground: hsl(240 5.9% 10%);
-  --muted: hsl(240 4.8% 95.9%);
-  --muted-foreground: hsl(240 3.8% 46.1%);
+  --muted: color(display-p3 0.977 0.977 0.973);
+  --muted-foreground: color(display-p3 0.388 0.388 0.37);
   --accent: hsl(240 4.8% 95.9%);
   --accent-foreground: hsl(240 5.9% 10%);
   --destructive: hsl(0 84.2% 60.2%);
@@ -53,7 +53,7 @@
 
 .dark {
   --background: color(display-p3 0.067 0.067 0.067);
-  --foreground: oklch(0.98 0.016 73.684);
+  --foreground: color(display-p3 0.938 0.885 0.802);
   --card: color(display-p3 0.098 0.098 0.094);
   --card-foreground: hsl(0 0% 98%);
   --popover: hsl(240 10% 3.9%);
@@ -62,8 +62,8 @@
   --primary-foreground: hsl(240 5.9% 10%);
   --secondary: hsl(240 3.7% 15.9%);
   --secondary-foreground: hsl(0 0% 98%);
-  --muted: hsl(240 3.7% 15.9%);
-  --muted-foreground: hsl(240 5% 64.9%);
+  --muted: color(display-p3 0.098 0.098 0.094);
+  --muted-foreground: color(display-p3 0.707 0.703 0.68);
   --accent: hsl(240 3.7% 15.9%);
   --accent-foreground: hsl(0 0% 98%);
   --destructive: hsl(0 62.8% 30.6%);

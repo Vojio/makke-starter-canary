@@ -442,9 +442,9 @@ export default function Page() {
         </div>
       </main>
 
-      <footer className="border-t mt-auto">
+      <footer className="border-t border-foreground/10 mt-auto">
         <div className="py-12">
-          <div className="mx-auto max-w-[900px] px-4">
+          <div className="mx-auto max-w-[1200px] px-4">
             <div className="grid gap-8 sm:grid-cols-2">
               <div className="flex items-center">
                 <p className="text-sm text-muted-foreground">
