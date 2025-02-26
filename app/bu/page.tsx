@@ -130,7 +130,7 @@ export default function Page() {
         <div className="px-4 pt-16 md:pt-24">
           <div className="mx-auto max-w-[900px] text-left">
             {mounted && (
-              <div className="mb-16 max-w-3xl mx-auto">
+              <div className="mb-16">
                 <div className="group relative mx-0 mb-8 w-[140px] cursor-pointer">  
                   <Image
                     src="/RepoPromptLogo_NoBG.png"
@@ -145,7 +145,7 @@ export default function Page() {
                   ></div>
                 </div>
                 
-                  <Badge variant="default" className="bg-blue-500 text-blue-50 mr-2 mb-4">
+                  <Badge variant="outline" className="bg-blue-100 text-blue-600 border-blue-500/20 mr-2 mb-4">
                   macOS Native
                   </Badge>
                 <h1 className="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
@@ -201,7 +201,7 @@ export default function Page() {
             {/* Why Repo Prompt Section */}
             <Section
               id="why-repo-prompt"
-              className="mb-24 scroll-m-20 "
+              className="mb-24 scroll-m-20"
               badgeText="The Problem"
               badgeVariant="orange"
               title="Why Repo Prompt?"
@@ -226,7 +226,7 @@ export default function Page() {
                     className="p-6 group hover:shadow-md border-border/50 hover:border-border transition-all duration-300"
                   >
                     <div className="mb-2">
-                      {i === 0 ? <Folder size={24} className="text-orange-500 " /> : i === 1 ? <AlertTriangle size={24} className="text-orange-500" /> : <CodeIcon size={24} className="text-orange-500" />}
+                      {i === 0 ? <Folder size={24} className="text-orange-500" /> : i === 1 ? <AlertTriangle size={24} className="text-orange-500" /> : <CodeIcon size={24} className="text-orange-500" />}
                     </div>
                     <div className="border-l-2 border-primary/50 pl-4 group-hover:border-primary transition-colors duration-300">
                       <h3 className="text-lg font-medium mb-1 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
@@ -239,8 +239,8 @@ export default function Page() {
 
             {/* Features Section */}
             <div className="mb-24 scroll-m-20" id="features">
-              <div className="mb-8 text-left max-w-3xl mx-auto">
-                <Badge variant="default" className="bg-blue-500 text-blue-50 mb-4">
+              <div className="mb-8 text-left">
+                <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 mb-4">
                   Key Features
                 </Badge>
                 <h2 className="mb-3 text-3xl font-semibold">
@@ -325,8 +325,8 @@ export default function Page() {
 
             {/* Workflow Section */}
             <div className="mb-24 scroll-m-20" id="workflow">
-              <div className="mb-8 text-left max-w-3xl mx-auto">
-                <Badge variant="default" className="bg-green-500 text-green-50 mb-4">
+              <div className="mb-8 text-left">
+                <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 mb-4">
                   Workflow
                 </Badge>
                 <h2 className="mb-3 text-3xl font-semibold">
@@ -492,10 +492,10 @@ const Section = memo(({
   children: React.ReactNode
 }) => {
   const badgeClasses = {
-    purple: "bg-purple-500 text-purple-50",
-    blue: "bg-blue-500 text-blue-50",
-    green: "bg-green-500 text-green-50",
-    orange: "bg-orange-500 text-orange-50",
+    purple: "bg-purple-500/10 text-purple-500 border-purple-500/20",
+    blue: "bg-blue-500/10 text-blue-500 border-blue-500/20",
+    green: "bg-green-500/10 text-green-500 border-green-500/20",
+    orange: "bg-orange-500/10 text-orange-500 border-orange-500/20",
   }
   
   return (
@@ -505,7 +505,7 @@ const Section = memo(({
     >
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 text-left">
-          <Badge variant="default" className={`${badgeClasses[badgeVariant]} mb-4`}>
+          <Badge variant="outline" className={`${badgeClasses[badgeVariant]} mb-4`}>
             {badgeText}
           </Badge>
           <h2 className="mb-3 text-3xl font-semibold">
