@@ -24,15 +24,15 @@
 :root {
   --background: color(display-p3 0.989 0.938 0.85);
   --foreground: color(display-p3 0.236 0.202 0.183);
-  --card: color(display-p3 0.995 0.988 0.985);
+  --card: color(display-p3 0.994 0.968 0.934);
   --card-foreground: hsl(240 10% 3.9%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(240 10% 3.9%);
   --primary: color(display-p3 0.129 0.126 0.111);
   --primary-foreground: color(display-p3 0.992 0.992 0.989);
-  --secondary: hsl(240 4.8% 95.9%);
-  --secondary-foreground: hsl(240 5.9% 10%);
-  --muted: color(display-p3 0.977 0.977 0.973);
+  --secondary: color(display-p3 0.994 0.968 0.934);
+  --secondary-foreground: color(display-p3 0.388 0.388 0.37);
+  --muted: color(display-p3 0.995 0.988 0.985);
   --muted-foreground: color(display-p3 0.388 0.388 0.37);
   --accent: hsl(240 4.8% 95.9%);
   --accent-foreground: hsl(240 5.9% 10%);

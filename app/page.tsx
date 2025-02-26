@@ -146,7 +146,7 @@ export default function Page() {
                   ></div>
                 </div>
                 
-                  <Badge variant="default" className="bg-blue-500 text-blue-50 mr-2 mb-4">
+                  <Badge variant="secondary" className="mr-2 mb-4">
                   macOS Native
                   </Badge>
                 <h1 className="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
@@ -170,7 +170,7 @@ export default function Page() {
                       </Button>
                     </div>
                     <div>
-                      <Button variant="outline" size="lg" className="rounded-full bg-card hover:bg-card/80 hover:shadow-md" asChild>
+                      <Button variant="secondary" size="lg" className="rounded-full hover:shadow-md" asChild>
                         <Link href="https://docs.google.com/forms/d/e/1FAIpQLSftCSyLtD1Zl-80dHfXmzczkWvnIPPjKZ-melbXBd4yEInBAw/viewform">
                           Windows/Linux Waitlist
                         </Link>
@@ -179,7 +179,7 @@ export default function Page() {
                   </div>
                   <div className="flex flex-wrap gap-3 justify-start">
                     <div>
-                      <Button size="lg" className="rounded-full bg-violet-500 text-purple-50 hover:bg-violet-500/80 hover:shadow-md" asChild>
+                      <Button size="lg" className="rounded-full bg-violet-500/90 text-purple-50 hover:bg-violet-500 hover:shadow-md" asChild>
                         <Link href="https://discord.com/invite/NtbFDAJPGM">
                           <MessageCircle className="mr-2 h-4 w-4" />
                           Join Discord
@@ -187,7 +187,7 @@ export default function Page() {
                       </Button>
                     </div>
                     <div>
-                      <Button size="lg" className="rounded-full bg-orange-400 text-orange-50 hover:bg-orange-400/80 hover:shadow-md" asChild>
+                      <Button size="lg" className="rounded-full bg-orange-400/90 hover:bg-orange-400 text-orange-50 hover:shadow-md" asChild>
                         <Link href="https://ko-fi.com/repoprompt">
                           <Coffee className="mr-2 h-4 w-4" />
                           Donate
@@ -204,7 +204,7 @@ export default function Page() {
               id="why-repo-prompt"
               className="mb-24 scroll-m-20 "
               badgeText="The Problem"
-              badgeVariant="orange"
+              badgeVariant="secondary"
               title="Why Repo Prompt?"
             >
               <div className="grid gap-6 sm:grid-cols-3">
@@ -227,7 +227,7 @@ export default function Page() {
                     className="p-6 group hover:shadow-md border-border/50 hover:border-border transition-all duration-300"
                   >
                     <div className="mb-2">
-                      {i === 0 ? <Folder size={24} className="text-orange-500 " /> : i === 1 ? <AlertTriangle size={24} className="text-orange-500" /> : <CodeIcon size={24} className="text-orange-500" />}
+                      {i === 0 ? <Folder size={24} className="text-orange-300" /> : i === 1 ? <AlertTriangle size={24} className="text-orange-300" /> : <CodeIcon size={24} className="text-orange-300" />}
                     </div>
                     <div className="border-l-2 border-primary/50 pl-4 group-hover:border-primary transition-colors duration-300">
                       <h3 className="text-lg font-medium mb-1 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
@@ -241,7 +241,7 @@ export default function Page() {
             {/* Features Section */}
             <div className="mb-24 scroll-m-20" id="features">
               <div className="mb-8 text-left max-w-3xl mx-auto">
-                <Badge variant="default" className="bg-blue-500 text-blue-50 mb-4">
+                <Badge variant="secondary" className="mb-4">
                   Key Features
                 </Badge>
                 <h2 className="mb-3 text-3xl font-semibold">
@@ -274,8 +274,8 @@ export default function Page() {
                         key={i}
                         className="p-6 group border-border/50 hover:border-border transition-all duration-300"
                       >
-                        <div className="mb-2">
-                          {i === 0 ? <Search size={24} className="text-blue-500" /> : i === 1 ? <FileText size={24} className="text-blue-500" /> : i === 2 ? <MapIcon size={24} className="text-blue-500" /> : <Cpu size={24} className="text-blue-500" />}
+                        <div className="mb-2 text-orange-300">
+                          {i === 0 ? <Search size={24} /> : i === 1 ? <FileText size={24} /> : i === 2 ? <MapIcon size={24} /> : <Cpu size={24} />}
                         </div>
                         <h3 className="text-lg font-medium mb-1 hover:text-primary transition-colors duration-300">
                           {feature.title}
@@ -293,7 +293,7 @@ export default function Page() {
               id="demo-video"
               className="mb-24 scroll-m-20"
               badgeText="See It In Action"
-              badgeVariant="blue"
+              badgeVariant="secondary"
               title="Product Demo"
               subtitle="Watch how Repo Prompt transforms your coding workflow with AI"
             >
@@ -308,7 +308,7 @@ export default function Page() {
                   ></iframe>
                 </div>
                 <div className="mt-6 flex justify-center">
-                  <Button variant="default" size="lg" className="rounded-full hover:shadow-md" asChild>
+                  <Button variant="secondary" size="lg" className="rounded-full hover:shadow-md" asChild>
                     <Link href="https://testflight.apple.com/join/nBWkUJD6">
                       Try It Now
                     </Link>
@@ -322,7 +322,7 @@ export default function Page() {
               id="integrations"
               className="mb-24 scroll-m-20"
               badgeText="Integrations"
-              badgeVariant="purple"
+              badgeVariant="secondary"
               title="Works with Any Model"
               subtitle="Supports OpenAI, Anthropic, DeepSeek, Gemini, Azure, and local models—keeping your workflow private
                     and offline when needed"
@@ -356,7 +356,7 @@ export default function Page() {
             {/* Workflow Section */}
             <div className="mb-24 scroll-m-20" id="workflow">
               <div className="mb-8 text-left max-w-3xl mx-auto">
-                <Badge variant="default" className="bg-green-500 text-green-50 mb-4">
+                <Badge variant="secondary" className="mb-4">
                   Workflow
                 </Badge>
                 <h2 className="mb-3 text-3xl font-semibold">
@@ -395,10 +395,10 @@ export default function Page() {
                       key={i} 
                       className="p-6 text-left group relative overflow-hidden border-border/50 hover:border-border transition-all duration-300"
                     >
-                      <div className="mb-2">
-                        {i === 0 ? <Edit3 size={24} className="text-green-600" /> : i === 1 ? <MessageCircle size={24} className="text-green-600" /> : <CheckSquare size={24} className="text-green-600" />}
+                      <div className="mb-2 text-orange-300">
+                        {i === 0 ? <Edit3 size={24} /> : i === 1 ? <MessageCircle size={24} /> : <CheckSquare size={24} />}
                       </div>
-                      <h3 className="mb-1 text-lg font-medium hover:text-green-600 transition-colors duration-300">
+                      <h3 className="mb-1 text-lg font-medium hover:text-primary transition-colors duration-300">
                         {step.title}
                       </h3>
                       <p className="text-muted-foreground text-sm">{step.description}</p>
@@ -413,13 +413,13 @@ export default function Page() {
               id="privacy"
               className="mb-24 scroll-m-20"
               badgeText="Privacy First"
-              badgeVariant="orange"
+              badgeVariant="secondary"
               title="Your Data, Your Control"
               subtitle="Connect to AI providers without intermediaries. Keep your workflow private and offline when needed."
             >
               <div className="mx-auto max-w-3xl">
                 <Card 
-                  className="p-6 backdrop-blur-sm bg-violet-100 dark:bg-violet-500/20 border-violet-500/20 hover:shadow-md transition-shadow duration-300"
+                  className="p-6 backdrop-blur-sm hover:shadow-md transition-shadow duration-300"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {[
@@ -428,8 +428,8 @@ export default function Page() {
                     { label: "Flexible", desc: "Works offline" }
                   ].map((item, i) => (
                     <div key={i} className="text-left">
-                    <div className="font-medium mb-1 text-violet-800 dark:text-violet-400">{item.label}</div>
-                    <div className="text-sm text-violet-950 dark:text-violet-200">{item.desc}</div>
+                    <div className="font-medium mb-1">{item.label}</div>
+                    <div className="text-sm">{item.desc}</div>
                     </div>
                   ))}
                   </div>
@@ -442,7 +442,7 @@ export default function Page() {
               id="faq"
               className="mb-24 scroll-m-20"
               badgeText="FAQ"
-              badgeVariant="blue"
+              badgeVariant="secondary"
               title="How It Makes Coding Easier"
             >
               <div className="mx-auto max-w-3xl">
@@ -465,8 +465,8 @@ export default function Page() {
                       key={i} 
                       className={`p-6 hover:shadow-md border-border/50 hover:border-border transition-all duration-300 ${i < 2 ? 'mb-4' : ''}`}
                     >
-                      <div className="mb-2">
-                        <HelpCircle size={24} className="text-blue-500" />
+                      <div className="mb-2 text-orange-300">
+                        <HelpCircle size={24} />
                       </div>
                       <h3 className="text-lg font-medium mb-1">{faq.question}</h3>
                       <p className="text-muted-foreground text-sm">
@@ -525,18 +525,11 @@ const Section = memo(({
   id: string,
   className: string,
   badgeText: string,
-  badgeVariant: "purple" | "blue" | "green" | "orange",
+  badgeVariant: "secondary",
   title: string,
   subtitle?: string,
   children: React.ReactNode
 }) => {
-  const badgeClasses = {
-    purple: "bg-purple-500 text-purple-50",
-    blue: "bg-blue-500 text-blue-50",
-    green: "bg-green-500 text-green-50",
-    orange: "bg-orange-500 text-orange-50",
-  }
-  
   return (
     <section 
       id={id} 
@@ -544,7 +537,7 @@ const Section = memo(({
     >
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 text-left">
-          <Badge variant="default" className={`${badgeClasses[badgeVariant]} mb-4`}>
+          <Badge variant={badgeVariant} className="mb-4">
             {badgeText}
           </Badge>
           <h2 className="mb-3 text-3xl font-semibold">

@@ -126,7 +126,7 @@ export default function Page() {
             {mounted && (
               <div className="mb-16 max-w-3xl mx-auto">
                 <div className="flex items-center gap-4">
-                  <Shield size={32} className="text-blue-500" />
+                  <Shield size={32} className="text-orange-300" />
                   <h1 className="text-4xl font-semibold tracking-tight">
                     Privacy Policy
                   </h1>
@@ -139,7 +139,7 @@ export default function Page() {
               id="overview"
               className="mb-12 scroll-m-20"
               badgeText="Overview"
-              badgeVariant="blue"
+              badgeVariant="secondary"
               title="Our Privacy Commitment"
             >
               <Card className="p-6 border-border/50">
@@ -154,12 +154,12 @@ export default function Page() {
               id="data-collection"
               className="mb-12 scroll-m-20"
               badgeText="Data Collection"
-              badgeVariant="orange"
+              badgeVariant="secondary"
               title="Minimal Data Collection"
             >
               <Card className="p-6 border-border/50">
                 <div className="flex items-start gap-4">
-                  <ShieldAlert size={24} className="text-orange-500 mt-1 flex-shrink-0" />
+                  <ShieldAlert size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">
                     We collect minimal, anonymous usage data through PostHog&apos;s default setup to track daily active users. No personal data, file contents, or identifiable information is collected or stored.
                   </p>
@@ -172,37 +172,37 @@ export default function Page() {
               id="code-privacy"
               className="mb-12 scroll-m-20"
               badgeText="Code Privacy"
-              badgeVariant="purple"
+              badgeVariant="secondary"
               title="Your Code Stays Private"
             >
               <Card className="p-6 border-border/50">
                 <ul className="space-y-4">
                   <li className="flex items-start gap-4">
-                    <Lock size={24} className="text-purple-500 mt-1 flex-shrink-0" />
+                    <Lock size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                     <p className="text-muted-foreground">
                       No code or files you open in Repo Prompt are transmitted to or stored on our servers.
                     </p>
                   </li>
                   <li className="flex items-start gap-4">
-                    <FileCheck size={24} className="text-purple-500 mt-1 flex-shrink-0" />
+                    <FileCheck size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                     <p className="text-muted-foreground">
                       All local processing: Codemap analysis and other core functionalities run entirely on your machine.
                     </p>
                   </li>
                   <li className="flex items-start gap-4">
-                    <Shield size={24} className="text-purple-500 mt-1 flex-shrink-0" />
+                    <Shield size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                     <p className="text-muted-foreground">
                       API integrations are opt-in: If you choose to use external APIs, your queries are sent directly to your configured provider. We do not intermediate or store these requests.
                     </p>
                   </li>
                   <li className="flex items-start gap-4">
-                    <Lock size={24} className="text-purple-500 mt-1 flex-shrink-0" />
+                    <Lock size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                     <p className="text-muted-foreground">
                       Clipboard features operate locally, ensuring no unintended data transmission.
                     </p>
                   </li>
                 </ul>
-                <div className="mt-2 p-4 bg-muted dark:bg-background rounded-md border border-border/50">
+                <div className="mt-2 p-4 bg-white dark:bg-background rounded-md border border-border/50">
                   <p className="text-sm text-muted-foreground">
                     While we take privacy seriously, we are not responsible for data handling by third-party API providers. Please review their privacy policies separately.
                   </p>
@@ -215,12 +215,12 @@ export default function Page() {
               id="future-updates"
               className="mb-12 scroll-m-20"
               badgeText="Future Updates"
-              badgeVariant="green"
+              badgeVariant="secondary"
               title="Policy Updates"
             >
               <Card className="p-6 border-border/50">
                 <div className="flex items-start gap-4">
-                  <Info size={24} className="text-green-600 mt-1 flex-shrink-0" />
+                  <Info size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">
                     As we transition out of beta and introduce new features or pricing models, this privacy policy may be updated to reflect any changes in data collection or processing. We remain committed to transparency.
                   </p>
@@ -233,12 +233,12 @@ export default function Page() {
               id="testflight"
               className="mb-12 scroll-m-20"
               badgeText="TestFlight"
-              badgeVariant="orange"
+              badgeVariant="secondary"
               title="Apple TestFlight Disclaimer"
             >
               <Card className="p-6 border-border/50">
                 <div className="flex items-start gap-4">
-                  <AlertCircle size={24} className="text-orange-500 mt-1 flex-shrink-0" />
+                  <AlertCircle size={24} className="text-orange-300 mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">
                     If you are using Repo Prompt via Apple TestFlight, note that Apple may collect additional data under their own policies. We do not control the collection of this data. Please refer to Apple&apos;s TestFlight privacy policy for details.
                   </p>
@@ -301,18 +301,11 @@ const Section = memo(({
   id: string,
   className: string,
   badgeText: string,
-  badgeVariant: "purple" | "blue" | "green" | "orange",
+  badgeVariant: "secondary",
   title: string,
   subtitle?: string,
   children: React.ReactNode
 }) => {
-  const badgeClasses = {
-    purple: "bg-purple-500 text-purple-50",
-    blue: "bg-blue-500 text-blue-50",
-    green: "bg-green-500 text-green-50",
-    orange: "bg-orange-500 text-orange-50",
-  }
-  
   return (
     <section 
       id={id} 
@@ -320,7 +313,7 @@ const Section = memo(({
     >
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 text-left">
-          <Badge variant="default" className={`${badgeClasses[badgeVariant]} mb-4`}>
+          <Badge variant={badgeVariant} className="mb-4">
             {badgeText}
           </Badge>
           <h2 className="mb-3 text-3xl font-semibold">
