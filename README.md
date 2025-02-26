@@ -1,7 +1,7 @@
 # Repo Prompt
 
 <div align="center">
-  <img src="public/GitHubImage.png" alt="Repo Prompt Logo" width="200"/>
+  <img src="public/GitHubSpoiler.png" alt="Repo Prompt Logo" width="200"/>
 </div>
 
 ## Code Smarter with AI
