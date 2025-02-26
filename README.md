@@ -1,88 +1,83 @@
-# Repo Prompt
+# Repo Prompt Landing Page
 
 <div align="center">
   <img src="public/GitHubSpoiler.png" alt="Repo Prompt Logo" width="auto"/>
 </div>
 
-## Code Smarter with AI
+This repository contains a proposed landing page website for Repo Prompt - a macOS native app that helps developers work more efficiently with AI coding assistants. Visit [repoprompt.com](https://repoprompt.com) to learn more about the main software.
 
-Repo Prompt helps you select, format, and transfer code to AI models like Claude and ChatGPT without messy copy-pasting. Structure your AI prompts and apply code changes easily.
+## About This Website
+
+This is the marketing website that showcases Repo Prompt's features and provides download links. The website is built with modern web technologies and is optimized for performance and accessibility.
 
 ## Technical Stack
 
-- **Next.js**: v15.2.0-canary.75 (Canary Build)
-- **React**: v19.0.0
-- **TailwindCSS**: v4.0.9
-- **TypeScript**: v5.7.3
-- **Key Dependencies**:
-  - next-themes: v0.4.4 (Theme management)
-  - framer-motion: v12.4.7 (Animations)
-  - lucide-react: v0.476.0 (Icons)
-  - class-variance-authority: v0.7.1 (Component styles)
+- **Framework**: Next.js v15.2.0-canary.75 (Canary Build)
+- **UI Library**: React v19.0.0
+- **Styling**: 
+  - TailwindCSS v4.0.9
+  - tailwindcss-animate v1.0.7
+  - class-variance-authority v0.7.1
+- **Theme Management**: next-themes v0.4.4
+- **Animations**: framer-motion v12.4.7
+- **Icons**: lucide-react v0.476.0
+- **Development**:
+  - TypeScript v5.7.3
+  - Bun as package manager
+  - ESLint v9.21.0
 
-## Features
+## Development
 
-- **Smart File Selection**: Manually pick files with advanced filtering options
-- **Optimized XML Output**: Provides structured file tree and meta-prompts
-- **Codemap Extraction**: Automatically extracts API definitions and references
-- **Token Usage Estimation**: Know your context size before sending
-- **Full Context Control**: Unlike tools that use RAG when exceeding token limits, Repo Prompt maintains full context with ordering
+### Prerequisites
 
-## Workflow
+- Node.js (Latest LTS version recommended)
+- Bun (Preferred) or another package manager
 
-### 1. Compose
-Select files and folders for your prompt's context. Use saved prompts and a repository map to guide the AI's output.
+### Getting Started
 
-### 2. Chat
-Iterate on your files or learn about how they work with full control over the context.
+1. Clone the repository
+2. Install dependencies:
+```bash
+# preferred
+bun install
 
-### 3. Review
-Review all AI-made changes, file by file, and approve changes, piecemeal or in bulk.
+# alternatively
+npm install
+```
 
-## Why Use Repo Prompt?
-
-- **No More Bloated Context**: Stop zipping your whole repo - send only what's needed
-- **Better AI Performance**: Cut noise for sharper answers from your AI assistant
-- **Targeted Code Selection**: Select just the files that matter for your current task
-
-## Getting Started
-
-First, run the development server:
-
+3. Start the development server:
 ```bash
 # preferred
 bun dev
 
-# not tested
+# alternatively
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The page auto-updates as you edit the files in the `app` directory.
 
-## Privacy
+## Project Structure
 
-Repo Prompt is designed with privacy as a core principle. We do not collect or store your code, and we minimize data collection to the bare essentials for analytics and service improvements.
+- `app/` - Next.js app directory containing pages and layouts
+- `components/` - Reusable UI components
+- `lib/` - Utility functions and shared logic
+- `public/` - Static assets including images
+- `styles/` - Global styles and Tailwind configuration
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+While this is primarily a landing page for Repo Prompt, contributions to improve the website are welcome. Please ensure you follow the existing code style and commit conventions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Main Software
 
-## Community
+To learn more about the actual Repo Prompt software (not this website):
 
-- [Join our Discord](https://discord.com/invite/NtbFDAJPGM)
-- [Support on Ko-fi](https://ko-fi.com/repoprompt)
+- [Download for Mac](https://testflight.apple.com/join/nBWkUJD6)
+- [Join Discord Community](https://discord.com/invite/NtbFDAJPGM)
+- [Support Development](https://ko-fi.com/repoprompt)
 
-## Deploy
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This website's code is proprietary and all rights are reserved.
