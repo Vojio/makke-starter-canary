@@ -40,14 +40,14 @@ export default function Page() {
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center">
               <div className="flex items-center gap-2">
-                <Link href="#" className="flex items-center gap-2 group px-2 py-1.5 rounded-md hover:bg-card/60 transition-all duration-300">
+                <Link href="#" className="flex items-center gap-2 group px-3 py-1.5 rounded-md hover:bg-card/60 transition-all duration-300">
                   <div className="relative overflow-hidden">
                   <Image
                     src="/RepoPromptLogo_NoBG.png"
                     alt="Repo Prompt"
                     width={32}
                     height={32}
-                    className="drop-shadow-md filter grayscale group-hover:grayscale-0 transition-filter duration-300"
+                    className="drop-shadow-xs filter grayscale group-hover:grayscale-0 transition-filter duration-300"
                   />
                   </div>
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -347,8 +347,8 @@ export default function Page() {
                       { label: "Flexible", desc: "Works offline" }
                     ].map((item, i) => (
                       <div key={i} className="text-left">
-                        <div className="font-medium mb-1 text-violet-950 dark:text-violet-400">{item.label}</div>
-                        <div className="text-sm text-violet-500 dark:text-violet-200">{item.desc}</div>
+                        <div className="font-medium mb-1 text-violet-600 dark:text-violet-400">{item.label}</div>
+                        <div className="text-sm text-violet-950 dark:text-violet-200">{item.desc}</div>
                       </div>
                     ))}
                   </div>
