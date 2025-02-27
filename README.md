@@ -64,7 +64,6 @@ The page auto-updates as you edit the files in the `app` directory.
 - `components/` - Reusable UI components
 - `lib/` - Utility functions and shared logic
 - `public/` - Static assets including images
-- `styles/` - Global styles and Tailwind configuration
 
 ## Contributing
 
