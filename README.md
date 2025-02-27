@@ -76,7 +76,3 @@ To learn more about the actual Repo Prompt software (not this website):
 - [Download for Mac](https://testflight.apple.com/join/nBWkUJD6)
 - [Join Discord Community](https://discord.com/invite/NtbFDAJPGM)
 - [Support Development](https://ko-fi.com/repoprompt)
-
-## License
-
-This website's code is proprietary and all rights are reserved.
