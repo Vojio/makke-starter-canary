@@ -131,7 +131,7 @@ export default function Page() {
               badgeVariant="secondary"
               title={sections.features.title}
             >
-              <div className="bg-card/50 py-10 px-6 -mx-4 rounded-lg">
+              <div className="bg-card/30 py-10 px-6 -mx-4 rounded-lg">
                 <div className="mx-auto max-w-3xl">
                   <div className="grid gap-6">
                     {workflowSteps.map((step, i) => (
@@ -205,43 +205,42 @@ export default function Page() {
               </div>
             </Section>
 
-            <div className="mb-24 scroll-m-20" id={sections.workflow.id}>
-              <div className="mb-8 text-left max-w-3xl mx-auto">
-                <Badge variant="secondary" className="mb-4">
-                  {sections.workflow.badgeText}
-                </Badge>
-                <h2 className="mb-3 text-3xl font-semibold">
-                  {sections.workflow.title}
-                </h2>
-              </div>
-              
-              <Suspense fallback={<Loading height="h-[400px]" text="Loading workflow preview..." />}>
-                <div className="bg-card/30 py-10 px-6 -mx-4 rounded-lg mb-8">
-                  <div className="max-w-3xl mx-auto">
-                    <WorkflowCarousel />
+            <Section
+              id={sections.workflow.id}
+              className="mb-24 scroll-m-20"
+              badgeText={sections.workflow.badgeText}
+              badgeVariant="secondary"
+              title={sections.workflow.title}
+            >
+              <div className="mx-auto max-w-3xl">
+                <Suspense fallback={<Loading height="h-[400px]" text="Loading workflow preview..." />}>
+                  <div className="bg-card/30 py-10 px-6 -mx-4 rounded-lg mb-8">
+                    <div className="max-w-3xl mx-auto">
+                      <WorkflowCarousel />
+                    </div>
+                  </div>
+                </Suspense>
+                
+                <div className="bg-card/30 py-10 px-6 -mx-4 rounded-lg">
+                  <div className="grid gap-6 sm:grid-cols-3 max-w-3xl mx-auto">
+                    {workflowCards.map((card, i) => (
+                      <Card 
+                        key={i} 
+                        className="p-6 text-left group relative overflow-hidden border-border/50 hover:border-border transition-all duration-300"
+                      >
+                        <div className="mb-2 text-orange-300">
+                          <card.icon size={24} />
+                        </div>
+                        <h3 className="mb-1 text-lg font-medium hover:text-primary transition-colors duration-300">
+                          {card.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm">{card.description}</p>
+                      </Card>
+                    ))}
                   </div>
                 </div>
-              </Suspense>
-              
-              <div className="bg-card/50 py-10 px-6 -mx-4 rounded-lg">
-                <div className="grid gap-6 sm:grid-cols-3 max-w-3xl mx-auto">
-                  {workflowCards.map((card, i) => (
-                    <Card 
-                      key={i} 
-                      className="p-6 text-left group relative overflow-hidden border-border/50 hover:border-border transition-all duration-300"
-                    >
-                      <div className="mb-2 text-orange-300">
-                        <card.icon size={24} />
-                      </div>
-                      <h3 className="mb-1 text-lg font-medium hover:text-primary transition-colors duration-300">
-                        {card.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm">{card.description}</p>
-                    </Card>
-                  ))}
-                </div>
               </div>
-            </div>
+            </Section>
 
             <Section
               id={sections.privacy.id}
