@@ -5,27 +5,7 @@ import Image from "next/image"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-
-const workflowSteps = [
-  {
-    name: "compose",
-    title: "Compose",
-    lightImage: "/workflow/light/compose-light.png",
-    darkImage: "/workflow/dark/compose-dark.png",
-  },
-  {
-    name: "chat",
-    title: "Chat",
-    lightImage: "/workflow/light/chat-light.png",
-    darkImage: "/workflow/dark/chat-dark.png",
-  },
-  {
-    name: "review",
-    title: "Review",
-    lightImage: "/workflow/light/review-light.png",
-    darkImage: "/workflow/dark/review-dark.png",
-  },
-]
+import { carouselSteps } from "@/app/content"
 
 export function WorkflowCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -37,61 +17,96 @@ export function WorkflowCarousel() {
   }, [])
 
   const next = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % workflowSteps.length)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselSteps.length)
   }
 
   const previous = () => {
-    setCurrentIndex((prevIndex) => prevIndex === 0 ? workflowSteps.length - 1 : prevIndex - 1)
+    setCurrentIndex((prevIndex) => prevIndex === 0 ? carouselSteps.length - 1 : prevIndex - 1)
   }
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        previous()
+      } else if (e.key === 'ArrowRight') {
+        next()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   if (!mounted) return null
 
-  const currentStep = workflowSteps[currentIndex]
+  const currentStep = carouselSteps[currentIndex]
   const imageSrc = theme === 'dark' ? currentStep.darkImage : currentStep.lightImage
+  const totalSlides = carouselSteps.length
 
   return (
-    <div className="relative">
+    <div 
+      className="relative" 
+      role="region" 
+      aria-roledescription="carousel"
+      aria-label="Workflow demonstration"
+    >
       <div className="aspect-[16/10] relative overflow-hidden rounded-xl shadow-lg border border-border/50">
         <Image
           src={imageSrc}
-          alt={currentStep.title}
+          alt={`${currentStep.title} workflow step screenshot`}
           fill
-          className="object-cover"
+          className="object-cover transition-opacity duration-200 ease-in-out"
           priority={currentIndex === 0}
         />
+        <div 
+          className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 to-transparent"
+          aria-hidden="true"
+        >
+          <h4 className="text-white text-xl font-medium">
+            {currentStep.title}
+          </h4>
+        </div>
       </div>
-      
-      <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
-        {workflowSteps.map((step, index) => (
+
+      <div className="absolute inset-x-0 bottom-12 flex justify-center gap-2 px-4">
+        {carouselSteps.map((step, index) => (
           <button
             key={step.name}
             className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex
-                ? "bg-primary/90 w-6"
-                : "bg-primary/20 hover:bg-primary/30"
+              index === currentIndex ? "bg-primary/90 w-6" : "bg-primary/20 hover:bg-primary/30"
             }`}
             onClick={() => setCurrentIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={index === currentIndex ? "true" : "false"}
           />
         ))}
       </div>
 
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90"
-        onClick={previous}
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
+      <div className="absolute inset-x-0 top-1/2 flex items-center justify-between -translate-y-1/2 px-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90 transition-colors duration-150 ease shadow-lg"
+          onClick={previous}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90 transition-colors duration-150 ease shadow-lg"
+          onClick={next}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
 
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90"
-        onClick={next}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
+      <div className="sr-only" aria-live="polite">
+        Showing slide {currentIndex + 1} of {totalSlides}
+      </div>
     </div>
   )
 }

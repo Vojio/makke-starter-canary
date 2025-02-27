@@ -16,13 +16,13 @@ export function Footer() {
             <div className="flex justify-start sm:justify-end gap-6">
               <Link 
                 href="mailto:contact@repoprompt.com" 
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 ease"
               >
                 Contact
               </Link>
               <Link 
                 href="/privacy" 
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 ease"
               >
                 Privacy Policy
               </Link>
