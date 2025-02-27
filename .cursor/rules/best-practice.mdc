@@ -1,0 +1,12 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Best Practices for Effective AI Use
+
+- Write descriptive comments: Helps AI understand context.
+- Outline function signatures: Guides AI towards structured output.
+- Use clear, declarative names: Improves prediction accuracy.
+- Know your solution first: Define the problem.
+- Make sure you're properly doing function calls when looking for files and creating/editing files.

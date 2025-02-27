@@ -1,131 +1,29 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { WorkflowCarousel } from "@/components/workflow-carousel"
-import { useEffect, useState, memo } from "react"
+import { socialIcons, uiIcons } from "@/components/icons"
 
-// Import Lucide React Icons
-import { 
-  MessageCircle,
-  Coffee,
-  Folder,
-  AlertTriangle,
-  Code as CodeIcon,
-  Search,
-  FileText,
-  Map as MapIcon,
-  Cpu,
-  HelpCircle,
-  Edit3,
-  CheckSquare,
-  Menu,
-  X
-} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Card } from "@/components/ui/card"
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
+import { Section } from "@/components/section"
+import { WorkflowCarousel } from "@/components/workflow-carousel"
+import { features, workflowSteps } from "../app/content"
 
 export default function Page() {
-  const currentYear = new Date().getFullYear()
   const [mounted, setMounted] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
-  // Toggle mobile menu
-  const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen)
-  }
 
-  // For hydration
   useEffect(() => {
     setMounted(true)
   }, [])
-  
+
   return (
     <div className="min-h-screen flex flex-col">
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/10">
-        <div className="max-w-[1200px] mx-auto px-4 w-full">
-          <div className="flex items-center justify-between py-4">
-            {/* Logo - Always visible */}
-            <Link href="#" className="flex items-center gap-2 group p-2 rounded-md hover:bg-card/50 transition-all duration-300">
-              <div className="relative overflow-hidden">
-                <Image
-                  src="/RepoPromptLogo.png"
-                  alt="Repo Prompt"
-                  width={32}
-                  height={32}
-                  className="drop-shadow-xs filter"
-                />
-              </div>
-            </Link>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link
-                href="https://testflight.apple.com/join/nBWkUJD6"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Mac Download
-              </Link>
-              <Link
-                href="https://discord.com/invite/NtbFDAJPGM"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Join Discord
-              </Link>
-              <Link
-                href="https://ko-fi.com/repoprompt"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Donate
-              </Link>
-              <ThemeToggle />
-            </div>
-            
-            {/* Mobile Menu Toggle */}
-            <div className="flex items-center md:hidden">
-              <ThemeToggle />
-              <button 
-                onClick={toggleMenu}
-                className="ml-4 p-2 rounded-md hover:bg-card/60 transition-all"
-                aria-label="Toggle menu"
-              >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 px-2 border-t border-border/10 animate-in fade-in slide-in-from-top-5 duration-300">
-              <div className="flex flex-col space-y-4">
-                <Link
-                  href="https://testflight.apple.com/join/nBWkUJD6"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Mac Download
-                </Link>
-                <Link
-                  href="https://discord.com/invite/NtbFDAJPGM"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Join Discord
-                </Link>
-                <Link
-                  href="https://ko-fi.com/repoprompt"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Donate
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Navigation />
 
       <main className="flex-grow">
         <div className="px-4 pt-16 md:pt-24">
@@ -181,7 +79,7 @@ export default function Page() {
                     <div>
                       <Button size="lg" className="rounded-full bg-violet-500/90 text-purple-50 hover:bg-violet-500 hover:shadow-md" asChild>
                         <Link href="https://discord.com/invite/NtbFDAJPGM">
-                          <MessageCircle className="mr-2 h-4 w-4" />
+                          <socialIcons.MessageCircle className="mr-2 h-4 w-4" />
                           Join Discord
                         </Link>
                       </Button>
@@ -189,7 +87,7 @@ export default function Page() {
                     <div>
                       <Button size="lg" className="rounded-full bg-orange-400/90 hover:bg-orange-400 text-orange-50 hover:shadow-md" asChild>
                         <Link href="https://ko-fi.com/repoprompt">
-                          <Coffee className="mr-2 h-4 w-4" />
+                          <socialIcons.Coffee className="mr-2 h-4 w-4" />
                           Donate
                         </Link>
                       </Button>
@@ -199,7 +97,6 @@ export default function Page() {
               </div>
             )}
 
-            {/* Why Repo Prompt Section */}
             <Section
               id="why-repo-prompt"
               className="mb-24 scroll-m-20 "
@@ -208,26 +105,13 @@ export default function Page() {
               title="Why Repo Prompt?"
             >
               <div className="grid gap-6 sm:grid-cols-3">
-                {[
-                  {
-                    title: "Zipping your whole repo?",
-                    description: "Too much bloat—send only what's needed"
-                  },
-                  {
-                    title: "LLM underperforming?",
-                    description: "Cut the noise for sharper answers"
-                  },
-                  {
-                    title: "Better AI coding?",
-                    description: "Select just the files that matter"
-                  }
-                ].map((feature, i) => (
+                {features.map((feature, i) => (
                   <Card 
                     key={i} 
                     className="p-6 group hover:shadow-md border-border/50 hover:border-border transition-all duration-300"
                   >
                     <div className="mb-2">
-                      {i === 0 ? <Folder size={24} className="text-orange-300" /> : i === 1 ? <AlertTriangle size={24} className="text-orange-300" /> : <CodeIcon size={24} className="text-orange-300" />}
+                      <feature.icon size={24} className="text-orange-300" />
                     </div>
                     <div className="border-l-2 border-primary/50 pl-4 group-hover:border-primary transition-colors duration-300">
                       <h3 className="text-lg font-medium mb-1 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
@@ -238,7 +122,6 @@ export default function Page() {
               </div>
             </Section>
 
-            {/* Features Section */}
             <div className="mb-24 scroll-m-20" id="features">
               <div className="mb-8 text-left max-w-3xl mx-auto">
                 <Badge variant="secondary" className="mb-4">
@@ -252,30 +135,13 @@ export default function Page() {
               <div className="bg-card/50 py-10 px-6 -mx-4 rounded-lg">
                 <div className="mx-auto max-w-3xl">
                   <div className="grid gap-6">
-                    {[
-                      {
-                        title: "Find & Select Files",
-                        description: "Manually pick files with advanced filtering"
-                      },
-                      {
-                        title: "Optimized XML Output",
-                        description: "Structured file tree and meta-prompts"
-                      },
-                      {
-                        title: "Codemap Extraction",
-                        description: "Extracts API definitions and references"
-                      },
-                      {
-                        title: "Token Usage Estimation",
-                        description: "Know your context size before sending"
-                      }
-                    ].map((feature, i) => (
+                    {workflowSteps.map((feature, i) => (
                       <Card 
                         key={i}
                         className="p-6 group border-border/50 hover:border-border transition-all duration-300"
                       >
                         <div className="mb-2 text-orange-300">
-                          {i === 0 ? <Search size={24} /> : i === 1 ? <FileText size={24} /> : i === 2 ? <MapIcon size={24} /> : <Cpu size={24} />}
+                          <feature.icon size={24} />
                         </div>
                         <h3 className="text-lg font-medium mb-1 hover:text-primary transition-colors duration-300">
                           {feature.title}
@@ -288,7 +154,6 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Video Demo Section */}
             <Section
               id="demo-video"
               className="mb-24 scroll-m-20"
@@ -317,7 +182,6 @@ export default function Page() {
               </div>
             </Section>
             
-            {/* Integration Section */}
             <Section
               id="integrations"
               className="mb-24 scroll-m-20"
@@ -353,7 +217,6 @@ export default function Page() {
               </div>
             </Section>
 
-            {/* Workflow Section */}
             <div className="mb-24 scroll-m-20" id="workflow">
               <div className="mb-8 text-left max-w-3xl mx-auto">
                 <Badge variant="secondary" className="mb-4">
@@ -364,7 +227,6 @@ export default function Page() {
                 </h2>
               </div>
               
-              {/* Import the WorkflowCarousel component at the top of the file */}
               {mounted && (
                 <div className="bg-card/30 py-10 px-6 -mx-4 rounded-lg mb-8">
                   <div className="max-w-3xl mx-auto">
@@ -396,7 +258,7 @@ export default function Page() {
                       className="p-6 text-left group relative overflow-hidden border-border/50 hover:border-border transition-all duration-300"
                     >
                       <div className="mb-2 text-orange-300">
-                        {i === 0 ? <Edit3 size={24} /> : i === 1 ? <MessageCircle size={24} /> : <CheckSquare size={24} />}
+                        {i === 0 ? <uiIcons.Edit3 size={24} /> : i === 1 ? <socialIcons.MessageCircle size={24} /> : <uiIcons.CheckSquare size={24} />}
                       </div>
                       <h3 className="mb-1 text-lg font-medium hover:text-primary transition-colors duration-300">
                         {step.title}
@@ -408,7 +270,6 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Privacy Section */}
             <Section
               id="privacy"
               className="mb-24 scroll-m-20"
@@ -437,7 +298,6 @@ export default function Page() {
               </div>
             </Section>
             
-            {/* FAQ Section */}
             <Section
               id="faq"
               className="mb-24 scroll-m-20"
@@ -466,7 +326,7 @@ export default function Page() {
                       className={`p-6 hover:shadow-md border-border/50 hover:border-border transition-all duration-300 ${i < 2 ? 'mb-4' : ''}`}
                     >
                       <div className="mb-2 text-orange-300">
-                        <HelpCircle size={24} />
+                        <uiIcons.HelpCircle size={24} />
                       </div>
                       <h3 className="text-lg font-medium mb-1">{faq.question}</h3>
                       <p className="text-muted-foreground text-sm">
@@ -481,79 +341,8 @@ export default function Page() {
         </div>
       </main>
 
-      <footer className="border-t border-foreground/10 mt-auto">
-        <div className="py-12">
-          <div className="mx-auto max-w-[1200px] px-4">
-            <div className="grid gap-8 sm:grid-cols-2">
-              <div className="flex items-center">
-                <p className="text-sm text-muted-foreground">
-                  © {currentYear} Repo Prompt. All rights reserved.
-                </p>
-              </div>
-              <div className="flex justify-start sm:justify-end gap-6">
-                <Link 
-                  href="mailto:contact@repoprompt.com" 
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-                >
-                  Contact
-                </Link>
-                <Link 
-                  href="/privacy" 
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-                >
-                  Privacy Policy
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
-
-// Reusable section component without animations
-const Section = memo(({
-  id,
-  className,
-  badgeText,
-  badgeVariant,
-  title,
-  subtitle,
-  children
-}: {
-  id: string,
-  className: string,
-  badgeText: string,
-  badgeVariant: "secondary",
-  title: string,
-  subtitle?: string,
-  children: React.ReactNode
-}) => {
-  return (
-    <section 
-      id={id} 
-      className={className}
-    >
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-8 text-left">
-          <Badge variant={badgeVariant} className="mb-4">
-            {badgeText}
-          </Badge>
-          <h2 className="mb-3 text-3xl font-semibold">
-            {title}
-          </h2>
-          {subtitle && (
-            <p className="text-lg text-muted-foreground">
-              {subtitle}
-            </p>
-          )}
-        </div>
-        {children}
-      </div>
-    </section>
-  )
-})
-
-Section.displayName = "Section"
 

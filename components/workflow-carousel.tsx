@@ -29,94 +29,69 @@ const workflowSteps = [
 
 export function WorkflowCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
-  
-  // Make sure component is mounted before rendering theme-dependent content
+
   useEffect(() => {
-    setIsLoaded(true)
+    setMounted(true)
   }, [])
-  
-  const nextSlide = () => {
+
+  const next = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % workflowSteps.length)
   }
-  
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? workflowSteps.length - 1 : prevIndex - 1
-    )
+
+  const previous = () => {
+    setCurrentIndex((prevIndex) => prevIndex === 0 ? workflowSteps.length - 1 : prevIndex - 1)
   }
 
-  // Auto advance slides every 5 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide()
-    }, 10000)
-    
-    return () => clearInterval(timer)
-  }, [])
-
-  if (!isLoaded) return <div className="aspect-video w-full bg-card/50 rounded-lg animate-pulse"></div>
+  if (!mounted) return null
 
   const currentStep = workflowSteps[currentIndex]
-  const imageSrc = theme === "dark" ? currentStep.darkImage : currentStep.lightImage
+  const imageSrc = theme === 'dark' ? currentStep.darkImage : currentStep.lightImage
 
   return (
-    <div className="relative max-w-full mx-auto">
-      <div className="overflow-hidden rounded-lg border border-border/50 shadow-md">
-        <div className="relative aspect-video w-full">
-          <Image 
-            src={imageSrc}
-            alt={`${currentStep.title} workflow screenshot`}
-            fill
-            className="object-cover transition-all duration-300"
-            priority={currentIndex === 0}
-            sizes="(max-width: 768px) 100vw, 768px"
-          />
-          
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-4">
-            <h4 className="dark:text-primary text-white text-xl font-medium">{currentStep.title}</h4>
-          </div>
-        </div>
+    <div className="relative">
+      <div className="aspect-[16/10] relative overflow-hidden rounded-xl shadow-lg border border-border/50">
+        <Image
+          src={imageSrc}
+          alt={currentStep.title}
+          fill
+          className="object-cover"
+          priority={currentIndex === 0}
+        />
       </div>
       
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <Button 
-          variant="secondary" 
-          size="icon" 
-          className="h-8 w-8 rounded-full bg-card/50 backdrop-blur-sm"
-          onClick={prevSlide}
-        >
-          <ChevronLeft className="h-4 w-4" />
-          <span className="sr-only">Previous slide</span>
-        </Button>
-        
-        <Button 
-          variant="secondary" 
-          size="icon" 
-          className="h-8 w-8 rounded-full bg-card/50 backdrop-blur-sm"
-          onClick={nextSlide}
-        >
-          <ChevronRight className="h-4 w-4" />
-          <span className="sr-only">Next slide</span>
-        </Button>
-      </div>
-      
-      <div className="mt-4 flex justify-center gap-2">
-        {workflowSteps.map((_, index) => (
+      <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+        {workflowSteps.map((step, index) => (
           <button
-            key={index}
-            className={`h-2 w-2 rounded-full transition-all ${
-              index === currentIndex 
-                ? "bg-primary w-6" 
-                : "bg-primary/30"
+            key={step.name}
+            className={`w-2 h-2 rounded-full transition-all ${
+              index === currentIndex
+                ? "bg-primary/90 w-6"
+                : "bg-primary/20 hover:bg-primary/30"
             }`}
             onClick={() => setCurrentIndex(index)}
-          >
-            <span className="sr-only">Go to slide {index + 1}</span>
-          </button>
+          />
         ))}
       </div>
+
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90"
+        onClick={previous}
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90"
+        onClick={next}
+      >
+        <ChevronRight className="h-4 w-4" />
+      </Button>
     </div>
   )
 }

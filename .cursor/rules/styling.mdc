@@ -1,0 +1,9 @@
+---
+description: Styling with Tailwind v4
+globs: *.tsx
+alwaysApply: false
+---
+# AI Assistant Instructions
+
+When processing these requirements, the AI assistant must:
+- Prioritize using Tailwind CSS v4 documentation.
