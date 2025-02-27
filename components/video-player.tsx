@@ -57,7 +57,7 @@ export function VideoPlayer({ videoId, title }: VideoPlayerProps) {
       )}
       <iframe 
         className="w-full h-full absolute inset-0"
-        src={`https://www.youtube.com/embed/${videoId}`}
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`}
         title={title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
